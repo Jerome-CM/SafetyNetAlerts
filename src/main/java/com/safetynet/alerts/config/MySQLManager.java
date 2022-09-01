@@ -9,9 +9,9 @@ public class MySQLManager {
 	private static MySQLManager instance = null;
 	 
 	private Connection connection = null;
-	private String url = "jdbc:mysql://localhost:3306/application";
+	private String url = "jdbc:mysql://localhost:3306/safetynet";
 	private String utilisateur = "root";
-	private String motDePasse = "";
+	private String motDePasse = "Java-Mysql3306";
  
 	public Connection getConnection() {
 		return connection;

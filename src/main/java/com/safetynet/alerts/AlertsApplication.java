@@ -1,13 +1,59 @@
 package com.safetynet.alerts;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.safetynet.alerts.model.MedicalRecordsAllergies;
+import com.safetynet.alerts.model.Persons;
+import com.safetynet.alerts.service.AllergiesService;
+import com.safetynet.alerts.service.PersonsService;
+
 @SpringBootApplication
-public class AlertsApplication {
+public class AlertsApplication implements CommandLineRunner {
+	 
+	@Autowired
+	private PersonsService personsService;
+	
+	@Autowired
+	private AllergiesService allergiesService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AlertsApplication.class, args);
+	}
+	
+	@Override
+	public void run(String... args) throws Exception {		
+		System.out.println("---------- App lunch ----------");
+		System.out.println("***** FindAll *****");
+		Iterable<Persons> habitants = personsService.getPersons();
+		
+		habitants.forEach(person -> System.out.println(person.getFirstName()));
+		System.out.println("***** Find Solene *****");
+		Optional<Persons> MaybePersonWithId2 = personsService.getPersonById(2);
+		Persons personWithId2 = MaybePersonWithId2.get();
+		System.out.println(personWithId2.getFirstName());
+		
+		System.out.println("***** Find All Allergies *****");
+		
+		Iterable<MedicalRecordsAllergies> allAllergies = allergiesService.getAllAllergies();
+		allAllergies.forEach(allergie -> System.out.println(allergie.getAllergie()));
+		
+		System.out.println("***** Find Solene Allergie *****");
+		
+//		Optional<Persons> optPerson = personsService.getPersonById(2);
+//		Persons personWithIdTwo = optPerson.get();
+//		
+//		personWithIdTwo.getAllAllergies().forEach(
+//				allergie -> System.out.println(allergie.getAllergie()));
+
+		//https://openclassrooms.com/fr/courses/6982461-utilisez-spring-data-pour-interagir-avec-vos-bases-de-donnees/7201194-utilisez-les-relations-unidirectionnelles 
+		// Avant ManyToMany
+		
+		System.out.println("---------- App close ----------");
 	}
 
 }
