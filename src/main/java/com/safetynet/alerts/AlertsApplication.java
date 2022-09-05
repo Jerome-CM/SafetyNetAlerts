@@ -1,6 +1,9 @@
 package com.safetynet.alerts;
 
+import java.util.ArrayList;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +28,7 @@ public class AlertsApplication implements CommandLineRunner {
 		SpringApplication.run(AlertsApplication.class, args);
 	}
 	
+	@Transactional
 	@Override
 	public void run(String... args) throws Exception {		
 		System.out.println("---------- App lunch ----------");
@@ -40,20 +44,29 @@ public class AlertsApplication implements CommandLineRunner {
 		System.out.println("***** Find All Allergies *****");
 		
 		Iterable<MedicalRecordsAllergies> allAllergies = allergiesService.getAllAllergies();
-		allAllergies.forEach(allergie -> System.out.println(allergie.getAllergie()));
+		allAllergies.forEach(allergie -> System.out.println(allergie.getName()));
+		
+		
+		System.out.println("***** Find All Email *****");
+		
+		ArrayList<String> listEmail = new ArrayList<String>();
+		
+		Iterable<Persons> listPersons = personsService.getPersons();
+		listPersons.forEach(person -> listEmail.add(person.getEmail()));
+		
 		
 		System.out.println("***** Find Solene Allergie *****");
 		
 //		Optional<Persons> optPerson = personsService.getPersonById(2);
-//		Persons personWithIdTwo = optPerson.get();
-//		
-//		personWithIdTwo.getAllAllergies().forEach(
-//				allergie -> System.out.println(allergie.getAllergie()));
-
-		//https://openclassrooms.com/fr/courses/6982461-utilisez-spring-data-pour-interagir-avec-vos-bases-de-donnees/7201194-utilisez-les-relations-unidirectionnelles 
-		// Avant ManyToMany
+//		Persons personWithIdTwo = optPerson.get();	
 		
-		System.out.println("---------- App close ----------");
+//		personWithIdTwo.getAllAllergies().forEach(
+//				allergie -> System.out.println(allergie.getName()));
+
+		// https://openclassrooms.com/fr/courses/6982461-utilisez-spring-data-pour-interagir-avec-vos-bases-de-donnees/7201194-utilisez-les-relations-unidirectionnelles#/id/r-7219167 
+		
+		
+		System.out.println("---------- App waiting ----------");
 	}
 
 }

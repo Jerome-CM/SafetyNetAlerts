@@ -20,7 +20,7 @@ public class Persons {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long id = 0;
 	
 	@Column(name="last_name")
 	private String lastName;
@@ -42,6 +42,14 @@ public class Persons {
 			)
 	@JoinColumn(name="id_person")
 	private List<MedicalRecordsAllergies> allergie = new ArrayList<>();
+	
+//	@OneToMany(
+//			cascade = CascadeType.ALL,
+//			orphanRemoval = true,
+//			fetch = FetchType.EAGER			
+//			)
+//	@JoinColumn(name="id_person")
+//	private List<MedicalRecordsMedicaments> medicament = new ArrayList<>();
 	
 	public long getId() {
 		return id;
@@ -96,6 +104,12 @@ public class Persons {
 	}
 	public void setAllergie(List<MedicalRecordsAllergies> allergie) {
 		this.allergie = allergie;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 }

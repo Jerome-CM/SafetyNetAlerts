@@ -19,7 +19,8 @@ public class MedicalRecordsAllergies {
 	@Column(name="id_person")
 	private long idPerson;
 	
-	private String allergie;
+	@Column(name="allergie")
+	private String name;
 
 	public long getId() {
 		return id;
@@ -37,12 +38,14 @@ public class MedicalRecordsAllergies {
 		this.idPerson = idPerson;
 	}
 
-	public String getAllergie() {
-		return allergie;
+	public String getName() {
+		return name;
 	}
 
-	public void setAllergie(String allergie) {
-		this.allergie = allergie;
+	public void setName(String name) {
+		this.name = name;
 	}
+
+
 
 }

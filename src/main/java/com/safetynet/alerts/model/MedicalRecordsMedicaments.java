@@ -19,7 +19,7 @@ public class MedicalRecordsMedicaments {
 	@Column(name="id_person")
 	private long idPerson;
 	
-	private String medicament;
+	private String name;
 
 	public long getId() {
 		return id;
@@ -37,12 +37,14 @@ public class MedicalRecordsMedicaments {
 		this.idPerson = idPerson;
 	}
 
-	public String getMedicament() {
-		return medicament;
+	public String getName() {
+		return name;
 	}
 
-	public void setMedicament(String medicament) {
-		this.medicament = medicament;
+	public void setName(String name) {
+		this.name = name;
 	}
+
+	
 
 }

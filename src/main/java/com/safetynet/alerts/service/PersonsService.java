@@ -22,5 +22,13 @@ public class PersonsService {
 		return personRepository.findById(id);
 	}
 	
+	public Iterable<Persons> getMailByCity(String city){
+		return personRepository.findByCity(city);
+	}
+	
+	public Persons addUser(Persons user) {
+		return personRepository.save(user);
+	}
+	
 }
  
