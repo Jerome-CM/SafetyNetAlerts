@@ -9,15 +9,16 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="Persons_has_Medication")
-public class MedicalRecordsMedicaments {
+@Table(name="Medicament_has_MedicalRecords")
+public class Medicaments {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_medicament")
 	private long id;
 	
-	@Column(name="id_person")
-	private long idPerson;
+	@Column(name="id_medical_record")
+	private long idMedicalRecords;
 	
 	private String name;
 
@@ -29,12 +30,12 @@ public class MedicalRecordsMedicaments {
 		this.id = id;
 	}
 
-	public long getIdPerson() {
-		return idPerson;
+	public long getIdMedicalRecords() {
+		return idMedicalRecords;
 	}
 
-	public void setIdPerson(long idPerson) {
-		this.idPerson = idPerson;
+	public void setIdMedicalRecords(long idMedicalRecords) {
+		this.idMedicalRecords = idMedicalRecords;
 	}
 
 	public String getName() {
@@ -44,7 +45,4 @@ public class MedicalRecordsMedicaments {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	
-
 }

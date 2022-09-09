@@ -10,7 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.safetynet.alerts.model.MedicalRecordsAllergies;
+import com.safetynet.alerts.model.Allergies;
 import com.safetynet.alerts.model.Persons;
 import com.safetynet.alerts.service.AllergiesService;
 import com.safetynet.alerts.service.PersonsService;
@@ -32,7 +32,9 @@ public class AlertsApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {		
 		System.out.println("---------- App lunch ----------");
-		System.out.println("***** FindAll *****");
+
+
+	/*	System.out.println("***** FindAll *****");
 		Iterable<Persons> habitants = personsService.getPersons();
 		
 		habitants.forEach(person -> System.out.println(person.getFirstName()));
@@ -43,7 +45,7 @@ public class AlertsApplication implements CommandLineRunner {
 		
 		System.out.println("***** Find All Allergies *****");
 		
-		Iterable<MedicalRecordsAllergies> allAllergies = allergiesService.getAllAllergies();
+		Iterable<Allergies> allAllergies = allergiesService.getAllAllergies();
 		allAllergies.forEach(allergie -> System.out.println(allergie.getName()));
 		
 		
@@ -57,14 +59,13 @@ public class AlertsApplication implements CommandLineRunner {
 		
 		System.out.println("***** Find Solene Allergie *****");
 		
-//		Optional<Persons> optPerson = personsService.getPersonById(2);
-//		Persons personWithIdTwo = optPerson.get();	
+		Optional<Persons> optPerson = personsService.getPersonById(2);
+		Persons personWithIdTwo = optPerson.get();	
 		
-//		personWithIdTwo.getAllAllergies().forEach(
-//				allergie -> System.out.println(allergie.getName()));
+		personWithIdTwo.getAllergie().forEach(
+				allergie -> System.out.println(allergie.getName()));
+*/
 
-		// https://openclassrooms.com/fr/courses/6982461-utilisez-spring-data-pour-interagir-avec-vos-bases-de-donnees/7201194-utilisez-les-relations-unidirectionnelles#/id/r-7219167 
-		
 		
 		System.out.println("---------- App waiting ----------");
 	}

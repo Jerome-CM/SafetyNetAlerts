@@ -9,15 +9,16 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="Persons_has_Allergies")
-public class MedicalRecordsAllergies {
+@Table(name="Allergies_has_MedicalRecords")
+public class Allergies extends Model{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_allergie")
 	private long id;
-	
-	@Column(name="id_person")
-	private long idPerson;
+
+	@Column(name="id_medical_record")
+	private long idMedicalRecords;
 	
 	@Column(name="allergie")
 	private String name;
@@ -30,12 +31,12 @@ public class MedicalRecordsAllergies {
 		this.id = id;
 	}
 
-	public long getIdPerson() {
-		return idPerson;
+	public long getIdMedicalRecords() {
+		return idMedicalRecords;
 	}
 
-	public void setIdPerson(long idPerson) {
-		this.idPerson = idPerson;
+	public void setIdMedicalRecords(long idMedicalRecords) {
+		this.idMedicalRecords = idMedicalRecords;
 	}
 
 	public String getName() {
@@ -45,7 +46,4 @@ public class MedicalRecordsAllergies {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
-
 }

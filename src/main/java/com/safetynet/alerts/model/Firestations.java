@@ -13,7 +13,7 @@ public class Firestations {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long idFirestation;
 	
 	private String address;
 	
@@ -21,11 +21,11 @@ public class Firestations {
 	private byte stationNumber;
 
 	public long getId() {
-		return id;
+		return idFirestation;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.idFirestation = id;
 	}
 
 	public String getAddress() {

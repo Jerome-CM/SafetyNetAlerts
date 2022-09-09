@@ -3,6 +3,7 @@ package com.safetynet.alerts.controller;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import com.safetynet.alerts.service.PersonsService;
 @RestController
 public class Urls {
 	
+	@Autowired
 	private PersonsService personsService;
 	
 	//return all email
