@@ -11,10 +11,10 @@ public class MedicalsRecord extends Model{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idMedicalRecord;
 	
-	@OneToOne
+	@OneToOne // Bidirectionnelle
 	private Persons person;
 	
-	@OneToMany(
+	@OneToMany( // Unidirectionnelle
 			fetch = FetchType.EAGER,
 			orphanRemoval = true,
 			cascade = CascadeType.ALL
@@ -22,7 +22,7 @@ public class MedicalsRecord extends Model{
 	@JoinColumn(name="id_allergie")
 	private List<Allergies> allergies;
 
-	@OneToMany(
+	@OneToMany( // Unidirectionnelle
 			fetch = FetchType.EAGER,
 			orphanRemoval = true,
 			cascade = CascadeType.ALL

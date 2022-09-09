@@ -1,6 +1,7 @@
 package com.safetynet.alerts.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ public class Persons extends Model{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_person")
 	private long idPerson;
 	
 	@Column(name="last_name")
@@ -21,10 +23,10 @@ public class Persons extends Model{
 	
 	private String address;
 	private String city;
-	private int zip;
+	private String zip;
 	private String phone;
 	private String email;
-	private String birthdate;
+	private Date birthdate;
 
 	@OneToOne(mappedBy="person") // Bidirectionnelle
 	private MedicalsRecord medicalsRecord;
@@ -57,10 +59,10 @@ public class Persons extends Model{
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public int getZip() {
+	public String getZip() {
 		return zip;
 	}
-	public void setZip(int zip) {
+	public void setZip(String zip) {
 		this.zip = zip;
 	}
 	public String getPhone() {
@@ -75,10 +77,10 @@ public class Persons extends Model{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 	public String getLastName() {
