@@ -2,12 +2,13 @@ package com.safetynet.alerts.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.inject.internal.Nullable;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 
 import javax.persistence.*;
-
+@Data
 @Entity
 @Table(name="tb_persons")
 public class Person extends Model{
