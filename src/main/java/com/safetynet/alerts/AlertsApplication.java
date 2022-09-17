@@ -7,17 +7,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.safetynet.alerts.service.AllergiesService;
-import com.safetynet.alerts.service.PersonsService;
+import com.safetynet.alerts.service.AllergieService;
+import com.safetynet.alerts.service.PersonService;
 
 @SpringBootApplication
 public class AlertsApplication implements CommandLineRunner {
 	 
 	@Autowired
-	private PersonsService personsService;
+	private PersonService personsService;
 	
 	@Autowired
-	private AllergiesService allergiesService;
+	private AllergieService allergiesService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AlertsApplication.class, args);

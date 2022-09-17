@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.safetynet.alerts.model.Firestation;
 
 @Repository
-public interface FirestationsRepository extends CrudRepository <Firestation, Long>{
+public interface FirestationRepository extends CrudRepository <Firestation, Long>{
 
 }
