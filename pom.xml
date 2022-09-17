@@ -12,7 +12,7 @@
 	<artifactId>alerts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>alerts</name>
-	<description>Projet with Spring Boot</description>
+	<description>Project with Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -62,7 +62,20 @@
 		    <artifactId>maven-site-plugin</artifactId>
 		    <version>3.7.1</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

@@ -1,8 +1,5 @@
 package com.safetynet.alerts;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.safetynet.alerts.model.Allergies;
-import com.safetynet.alerts.model.Persons;
 import com.safetynet.alerts.service.AllergiesService;
 import com.safetynet.alerts.service.PersonsService;
 

@@ -1,33 +1,24 @@
 package com.safetynet.alerts.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="medical_records")
+@Table(name="tb_medicals_records")
+@Data
 public class MedicalsRecord extends Model{
-
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idMedicalRecord;
-	
-	@OneToOne // Bidirectionnelle
-	private Persons person;
-	
-	@OneToMany( // Unidirectionnelle
-			fetch = FetchType.EAGER,
-			orphanRemoval = true,
-			cascade = CascadeType.ALL
-	)
-	@JoinColumn(name="id_allergie")
-	private List<Allergies> allergies;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-	@OneToMany( // Unidirectionnelle
-			fetch = FetchType.EAGER,
-			orphanRemoval = true,
-			cascade = CascadeType.ALL
-	)
-	@JoinColumn(name="id_medicament")
-	private List<Medicaments> medicaments;
+	@OneToOne
+	private Person person;
 
+	@ManyToMany
+	private List<Medicament> medicaments;
+
+	@ManyToMany
+	private List<Allergie> allergies;
 }
