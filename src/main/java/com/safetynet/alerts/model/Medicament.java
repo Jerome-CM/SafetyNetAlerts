@@ -1,5 +1,6 @@
 package com.safetynet.alerts.model;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
@@ -9,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+@Data
 @Entity
 @Table(name="tb_medicaments")
 public class Medicament extends Model{
