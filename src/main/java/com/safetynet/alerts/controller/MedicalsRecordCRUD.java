@@ -1,3 +1,4 @@
+/*
 package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.dto.FirestationDTO;
@@ -26,3 +27,4 @@ public class MedicalsRecordCRUD {
     }
 
 }
+*/

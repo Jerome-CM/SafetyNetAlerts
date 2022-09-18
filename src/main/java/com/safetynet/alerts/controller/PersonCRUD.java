@@ -1,28 +1,35 @@
 package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.dto.PersonDTO;
-import com.safetynet.alerts.service.PersonService;
+import com.safetynet.alerts.model.Person;
+import com.safetynet.alerts.service.impl.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PersonCRUD {
     @Autowired
-    PersonService personsService;
+    PersonServiceImpl personServiceImpl;
 
     @PostMapping("/person")
     public PersonDTO addPerson(@RequestBody PersonDTO personDTO){
-       return personsService.savePerson(personDTO);
+       return personServiceImpl.add(personDTO);
     }
 
-    @PutMapping("person")
+    @PutMapping("/person")
     public PersonDTO updatePerson(@RequestBody PersonDTO personDTO){
-        return personsService.updatePerson(personDTO);
+        return personServiceImpl.update(personDTO);
     }
 
-    @DeleteMapping("person")
-    public PersonDTO deletePerson(@RequestBody PersonDTO personDTO){
-        return personsService.deletePerson(personDTO);
+    @DeleteMapping("/person")
+    public String deletePerson(@RequestBody PersonDTO personDTO){
+        personServiceImpl.delete(personDTO);
+        return "Supression avec succès";
+    }
+
+    @GetMapping("/person")
+    public Iterable<Person> getPersons(){
+        return personServiceImpl.getPersons();
     }
 
 }

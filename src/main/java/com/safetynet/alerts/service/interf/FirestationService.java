@@ -1,4 +1,5 @@
-package com.safetynet.alerts.service;
+/*
+package com.safetynet.alerts.service.interf;
 
 import com.safetynet.alerts.dto.FirestationDTO;
 import com.safetynet.alerts.repository.FirestationRepository;
@@ -6,9 +7,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-@Data
-public class FirestationService implements FirestationImpl {
+public interface FirestationService {
 
 	@Autowired
 	private FirestationRepository firestationRepository;
@@ -26,17 +25,6 @@ public class FirestationService implements FirestationImpl {
 		return firestationRepository.delete(firestationDTO);
 	}
 
-	/*public Iterable<Person> getPersons() {
-		return firestationsRepository.findAll();
-	}
-
-	/*public Optional<Person> getPersonById(long id) {
-		return firestationsRepository.findById(id);
-	}
-
-	public Iterable<Person> getMailByCity(String city){
-		return firestationsRepository.findByCity(city);
-	}*/
 
 }
- 
+ */

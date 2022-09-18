@@ -3,6 +3,7 @@ package com.safetynet.alerts.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -14,6 +15,7 @@ public class MedicalsRecord extends Model{
 	private long id;
 
 	@OneToOne
+	@NotNull
 	private Person person;
 
 	@ManyToMany

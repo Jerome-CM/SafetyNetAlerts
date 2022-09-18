@@ -1,7 +1,8 @@
+/*
 package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.dto.FirestationDTO;
-import com.safetynet.alerts.service.FirestationService;
+import com.safetynet.alerts.service.interf.FirestationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,3 +27,4 @@ public class FirestationCRUD {
     }
 
 }
+*/

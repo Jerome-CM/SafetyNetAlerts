@@ -2,31 +2,29 @@ package com.safetynet.alerts;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.safetynet.alerts.service.AllergieService;
-import com.safetynet.alerts.service.PersonService;
+import com.safetynet.alerts.service.interf.PersonService;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class AlertsApplication implements CommandLineRunner {
 	 
-	@Autowired
-	private PersonService personsService;
-	
-	@Autowired
-	private AllergieService allergiesService;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(AlertsApplication.class, args);
 	}
 	
-	@Transactional
+
 	@Override
-	public void run(String... args) throws Exception {		
-		System.out.println("---------- App lunch ----------");
+	public void run(String... args) throws Exception {
+
+		System.out.println("----------- App lunch ---------");
 
 
 	/*	System.out.println("***** FindAll *****");
