@@ -8,6 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 @Service
 public class PersonServiceImpl implements PersonService {
 
@@ -31,14 +34,29 @@ public class PersonServiceImpl implements PersonService {
         return modelMapper.map(person, PersonDTO.class);
     }
 
+    /*@Override
+    public void deleteByFirstNameAndLastName(PersonDTO personDTO){
+        Person person = modelMapper.map(personDTO, Person.class);
+        personRepository.delete(person.getFirstName(), person.getLastName());
+    }*/
+    // TODO Delete Person
     @Override
     public void delete(PersonDTO personDTO){
         Person person = modelMapper.map(personDTO, Person.class);
-        personRepository.delete(person);
+        System.out.println("First name : " + person.getFirstName());
+        System.out.println("Last name : " + person.getLastName());
+        personRepository.deletePerson(person.getFirstName(), person.getLastName());
     }
 
     @Override
-    public Iterable<Person> getPersons(){
-       return personRepository.findAll();
+    public ArrayList<String> getMailByCity(String city){
+
+        ArrayList<String> listEmail = new ArrayList<String>();
+
+        Iterable<Person> listPersons = personRepository.findByCity(city);
+        listPersons.forEach(person -> listEmail.add(person.getEmail()));
+
+        return listEmail;
+
     }
 }

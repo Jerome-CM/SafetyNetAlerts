@@ -6,6 +6,8 @@ import com.safetynet.alerts.service.impl.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 public class PersonCRUD {
     @Autowired
@@ -22,14 +24,14 @@ public class PersonCRUD {
     }
 
     @DeleteMapping("/person")
-    public String deletePerson(@RequestBody PersonDTO personDTO){
+    public void deletePerson(@RequestBody PersonDTO personDTO){
         personServiceImpl.delete(personDTO);
-        return "Supression avec succès";
+
     }
 
-    @GetMapping("/person")
-    public Iterable<Person> getPersons(){
-        return personServiceImpl.getPersons();
+    @GetMapping("/communityEmail")
+    public ArrayList<String> getMailByCity(@RequestParam String city){
+        return personServiceImpl.getMailByCity(city);
     }
 
 }
