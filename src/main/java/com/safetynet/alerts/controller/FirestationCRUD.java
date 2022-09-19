@@ -1,10 +1,14 @@
-/*
+
 package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.dto.FirestationDTO;
+import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.interf.FirestationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class FirestationCRUD {
@@ -22,9 +26,14 @@ public class FirestationCRUD {
     }
 
     @DeleteMapping("/firestation")
-    public FirestationDTO deleteFirestation(@RequestBody FirestationDTO firestationDTO){
+    public boolean deleteFirestation(@RequestBody FirestationDTO firestationDTO){
         return firestationService.deleteFirestation(firestationDTO);
     }
 
+    @GetMapping("/firestation")
+    public Iterable<ArrayList> firestationCoverage(@RequestParam int stationNumber){
+        return firestationService.firestationCoverage(stationNumber);
+    }
+
 }
-*/
+

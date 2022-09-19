@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.safetynet.alerts.model.Person;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public interface PersonRepository extends CrudRepository <Person, Long>{
 	
@@ -18,4 +21,7 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 
 	@Query(value="DELETE FROM tb_persons WHERE first_name=?1 AND last_name=?2", nativeQuery=true)
 	public void deletePerson(String firstName, String lastName);
+
+	@Query(value="SELECT * FROM tb_persons WHERE address = ?1",nativeQuery = true)
+	public List<ArrayList> getPersonWithAdresse(String address);
 }

@@ -8,4 +8,6 @@ import com.safetynet.alerts.model.Firestation;
 @Repository
 public interface FirestationRepository extends CrudRepository <Firestation, Long>{
 
+    public String getAddressByStation(int number);
+
 }
