@@ -59,7 +59,7 @@ public class FirestationServiceImpl implements FirestationService {
 
         String firestationAdresse = firestationRepository.getAddressByStation(stationNumber);
         System.out.println(firestationAdresse);
-        List<ArrayList> listPersonCoverToThisStation = personRepository.getPersonWithAdresse(firestationAdresse);
+        List<ArrayList> listPersonCoverToThisStation = personRepository.getPersonWithAddress(firestationAdresse);
 
 
         // TODO Control

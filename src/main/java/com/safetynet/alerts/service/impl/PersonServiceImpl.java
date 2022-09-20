@@ -4,11 +4,13 @@ import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.service.interf.PersonService;
+import com.safetynet.alerts.utility.Utility;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,36 +28,31 @@ public class PersonServiceImpl implements PersonService {
         personRepository.save(person);
         return modelMapper.map(person, PersonDTO.class);
     }
-
+// TODO A vérifier
     @Override
     public PersonDTO update(PersonDTO personDTO){
         Person person = modelMapper.map(personDTO, Person.class);
-        personRepository.save(person);
+        List<Person>personfind = personRepository.getPersons(person.getFirstName(), person.getLastName());
+        if(!personfind.isEmpty()) {
+            personRepository.save(person);
+        }
         return modelMapper.map(person, PersonDTO.class);
     }
 
-    /*@Override
-    public void deleteByFirstNameAndLastName(PersonDTO personDTO){
-        Person person = modelMapper.map(personDTO, Person.class);
-        personRepository.delete(person.getFirstName(), person.getLastName());
-    }*/
-    // TODO Delete Person
     @Override
     public void delete(PersonDTO personDTO){
         Person person = modelMapper.map(personDTO, Person.class);
-        System.out.println("First name : " + person.getFirstName());
-        System.out.println("Last name : " + person.getLastName());
-        personRepository.deletePerson(person.getFirstName(), person.getLastName());
+        List<Person> listPerson = personRepository.getPersons(person.getFirstName(), person.getLastName());
+        if(!listPerson.isEmpty()){
+            personRepository.delete(listPerson.get(0));
+        }
     }
 
     @Override
     public ArrayList<String> getMailByCity(String city){
-
         ArrayList<String> listEmail = new ArrayList<String>();
-
         Iterable<Person> listPersons = personRepository.findByCity(city);
         listPersons.forEach(person -> listEmail.add(person.getEmail()));
-
         return listEmail;
 
     }

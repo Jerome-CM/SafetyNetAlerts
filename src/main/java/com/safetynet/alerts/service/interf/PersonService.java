@@ -13,8 +13,6 @@ public interface PersonService {
 	public PersonDTO update(PersonDTO personDTO);
 
 	public void delete(PersonDTO personDTO);
-	// public void deleteByFirstNameAndLastName(PersonDTO personDTO);
-	//public void deletePerson(String firstName, String lastName);
 
 	public ArrayList<String> getMailByCity(String city);
 }
