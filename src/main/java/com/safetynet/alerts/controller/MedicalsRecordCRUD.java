@@ -1,4 +1,4 @@
-/*package com.safetynet.alerts.controller;
+package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.dto.FirestationDTO;
 import com.safetynet.alerts.dto.MedicalsRecordDTO;
@@ -22,9 +22,9 @@ public class MedicalsRecordCRUD {
     }
 
     @DeleteMapping("/medicalRecord")
-    public MedicalsRecordDTO deleteMedicalsRecord(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
+    public boolean deleteMedicalsRecord(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
         return medicalsRecordServiceImpl.delete(medicalsRecordDTO);
     }
 
-}*/
+}
 
