@@ -7,12 +7,16 @@ import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.repository.FirestationRepository;
 import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.service.interf.FirestationService;
+import com.safetynet.alerts.utility.Utility;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FirestationServiceImpl implements FirestationService {
@@ -35,21 +39,28 @@ public class FirestationServiceImpl implements FirestationService {
     @Override
     public FirestationDTO updateFirestation(FirestationDTO firestationDTO){
         Firestation firestation = modelMapper.map(firestationDTO, Firestation.class);
-        firestationRepository.save(firestation);
+        List<Firestation> listStationByAddress = firestationRepository.findByAddress(firestation.getAddress());
+
+        if(!listStationByAddress.get(0).getStation().equals(firestation.getStation())){
+            firestationRepository.save(firestation);
+        }
         return modelMapper.map(firestation, FirestationDTO.class);
     }
 
-    // TODO Delete methode ?
+
     @Override
     public boolean deleteFirestation(FirestationDTO firestationDTO){
         Firestation firestation = modelMapper.map(firestationDTO, Firestation.class);
-        System.out.println(firestation.getAddress());
-        try {
-            firestationRepository.deleteById(firestation.getId());
+
+        List<Firestation> listStationByNumber = firestationRepository.findByStation(firestation.getStation());
+        List<Firestation> listStationByAddress = firestationRepository.findByAddress(firestation.getAddress());
+
+        if(listStationByNumber.isEmpty()){
+            firestationRepository.delete(listStationByAddress.get(0));
             return true;
-        } catch (Exception e){
-            System.out.println("Error" + e.getMessage());
-            return false;
+        } else {
+            firestationRepository.delete(listStationByNumber.get(0));
+            return true;
         }
     }
 
