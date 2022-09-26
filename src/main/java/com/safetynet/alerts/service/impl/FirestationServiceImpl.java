@@ -64,28 +64,6 @@ public class FirestationServiceImpl implements FirestationService {
         }
     }
 
-    @Override
-    public Iterable<ArrayList> firestationCoverage(int stationNumber){
 
-
-        String firestationAdresse = firestationRepository.getAddressByStation(stationNumber);
-        System.out.println(firestationAdresse);
-        List<ArrayList> listPersonCoverToThisStation = personRepository.getPersonWithAddress(firestationAdresse);
-
-
-        // TODO Control
-
-        for (int i = 0; i < listPersonCoverToThisStation.size(); i++) {
-            System.out.println("Personnes numéro : " + i+1);
-            Person person = new Person();
-            System.out.println(person.getLastName());
-            System.out.println(person.getFirstName());
-            System.out.println(person.getAddress());
-            System.out.println(person.getPhone());
-            System.out.println("-----------------------");
-        }
-
-        return listPersonCoverToThisStation;
-    }
 }
 

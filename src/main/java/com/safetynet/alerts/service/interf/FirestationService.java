@@ -14,7 +14,7 @@ public interface FirestationService {
 
 	public boolean deleteFirestation(FirestationDTO firestationDTO);
 
-	public Iterable<ArrayList> firestationCoverage(int stationNumber);
+
 
 
 }

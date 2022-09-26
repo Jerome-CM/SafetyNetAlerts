@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicalsRecordServiceImpl implements MedicalsRecordService {
@@ -29,6 +30,14 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
 
     public MedicalsRecordDTO save(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
         MedicalsRecord medicalsRecord = modelMapper.map(medicalsRecordDTO, MedicalsRecord.class);
+
+        // Si l'on connait la personne on agit sinon on ne fait rien
+        // on créer la paire idMedicalRecords <-> idPerson
+           // SAVE(??)
+        // On ajout la date de naissance à Person
+        // on regarde s'il y a des allergies,
+        // on ajout à la BDD l'allergie si elle est inconnue, sinon on l'ajoute à la table de jointure
+        // pareil pour les médicaments
         medicalsRecordRepository.save(medicalsRecord);
         return modelMapper.map(medicalsRecord, MedicalsRecordDTO.class);
     }
@@ -42,9 +51,9 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
 
         if(!listPersons.isEmpty()){
             long idPerson = listPersons.get(0).getId();
-            long idMedicalsRecord;
-            idMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(idPerson).get(0);
-            if(idMedicalsRecord != 0){
+            Optional<Long> idMedicalsRecord;
+            idMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(idPerson);
+            if(idMedicalsRecord.isPresent()){
                 medicalsRecordRepository.save(medicalsRecord);
             }
         }
@@ -53,11 +62,10 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
 
     public boolean delete(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
         List<Person> listPersons = personRepository.getPersons(medicalsRecordDTO.getFirstName(), medicalsRecordDTO.getLastName());
-
         if(!listPersons.isEmpty()){
            long idPerson = listPersons.get(0).getId();
-           long idMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(idPerson).get(0);
-           medicalsRecordRepository.deleteById(idMedicalsRecord);
+           Optional<Long> idMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(idPerson);
+           medicalsRecordRepository.deleteById(idMedicalsRecord.get());
             return true;
         } else {
             return false;

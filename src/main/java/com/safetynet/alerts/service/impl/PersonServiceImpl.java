@@ -48,12 +48,4 @@ public class PersonServiceImpl implements PersonService {
         }
     }
 
-    @Override
-    public ArrayList<String> getMailByCity(String city){
-        ArrayList<String> listEmail = new ArrayList<String>();
-        Iterable<Person> listPersons = personRepository.findByCity(city);
-        listPersons.forEach(person -> listEmail.add(person.getEmail()));
-        return listEmail;
-
-    }
 }
