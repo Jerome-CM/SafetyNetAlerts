@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface FirestationRepository extends CrudRepository <Firestation, Long>{
 
-    public String getAddressByStation(int number);
+    public List<Firestation> findAddressByStation(String number);
 
     public List<Firestation> findByAddress(String address);
 
