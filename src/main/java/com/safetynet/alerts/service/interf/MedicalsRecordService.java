@@ -9,7 +9,7 @@ public interface MedicalsRecordService {
 
     public MedicalsRecordDTO update(MedicalsRecordDTO medicalsRecordDTO);
 
-    public boolean delete(MedicalsRecordDTO medicalsRecordDTO);
+    public String delete(MedicalsRecordDTO medicalsRecordDTO);
 
 
 }

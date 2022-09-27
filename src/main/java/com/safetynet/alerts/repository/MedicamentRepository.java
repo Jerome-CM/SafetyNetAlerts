@@ -5,7 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import com.safetynet.alerts.model.Medicament;
 
+import java.util.List;
+
 @Repository
 public interface MedicamentRepository extends CrudRepository <Medicament, Long>{
+
+    public List<Medicament> findByName(String medicament);
 
 }

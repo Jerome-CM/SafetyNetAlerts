@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface MedicalsRecordRepository extends CrudRepository <MedicalsRecord, Long>{
-    // @Query(value="SELECT mr FROM MedicalsRecord mr WHERE mr.person.id =?1") Jointure ??
+
     @Query(value="SELECT id FROM tb_medicals_records WHERE person_id =?1", nativeQuery = true)
     public Optional<Long> findMedicalsRecordsIdByIdPerson(long id);
 

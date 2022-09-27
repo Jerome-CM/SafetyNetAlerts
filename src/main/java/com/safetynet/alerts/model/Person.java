@@ -27,19 +27,19 @@ public class Person extends Model{
 	private String firstName;
 	@Length(max = 30)
 	@NotNull
-	private String address;
+	private String address = "Not set";
 	@Length(max = 30)
 	@NotNull
-	private String city;
+	private String city = "Not set";
 	@Length(max = 20)
 	@NotNull
-	private String zip;
+	private String zip = "Not set";
 	@Length(max = 30)
 	@NotNull
-	private String phone;
+	private String phone = "Not set";
 	@Length(max = 100)
 	@NotNull
-	private String email;
+	private String email = "Not set";
 	@JsonFormat(pattern="dd/MM/yyyy")
 	@Nullable
 	@Temporal(TemporalType.DATE)

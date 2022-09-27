@@ -12,7 +12,7 @@ public interface FirestationService {
 
 	public FirestationDTO updateFirestation(FirestationDTO firestationDTO);
 
-	public boolean deleteFirestation(FirestationDTO firestationDTO);
+	public String deleteFirestation(FirestationDTO firestationDTO);
 
 
 

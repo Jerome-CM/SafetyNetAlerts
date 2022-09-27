@@ -22,7 +22,7 @@ public class MedicalsRecordCRUD {
     }
 
     @DeleteMapping("/medicalRecord")
-    public boolean deleteMedicalsRecord(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
+    public String deleteMedicalsRecord(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
         return medicalsRecordServiceImpl.delete(medicalsRecordDTO);
     }
 

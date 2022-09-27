@@ -23,6 +23,8 @@ public class Medicament extends Model{
 	@NotNull
 	private String name;
 
+	public Medicament(){}
+
 	public Medicament(String name) {
 		this.name = name;
 	}

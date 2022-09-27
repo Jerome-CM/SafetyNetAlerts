@@ -22,6 +22,8 @@ public class Allergie extends Model{
 	@NotNull
 	private String name;
 
+	public Allergie(){}
+
 	public Allergie(String name) {
 		this.name = name;
 	}

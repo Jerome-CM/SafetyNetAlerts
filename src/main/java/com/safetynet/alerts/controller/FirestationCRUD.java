@@ -23,7 +23,7 @@ public class FirestationCRUD {
     }
 
     @DeleteMapping("/firestation")
-    public boolean deleteFirestation(@RequestBody FirestationDTO firestationDTO){
+    public String deleteFirestation(@RequestBody FirestationDTO firestationDTO){
         return firestationService.deleteFirestation(firestationDTO);
     }
 

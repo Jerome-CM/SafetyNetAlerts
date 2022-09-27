@@ -13,7 +13,7 @@ public class MedicalsRecordDTO {
     private String firstName;
     @JsonFormat(pattern="dd/MM/yyyy")
     private Date birthdate;
-    private List<String> medicaments;
+    private List<String> medications;
     private List<String> allergies;
 
 }

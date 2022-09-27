@@ -25,9 +25,6 @@ public class FirestationServiceImpl implements FirestationService {
     private FirestationRepository firestationRepository;
 
     @Autowired
-    private PersonRepository personRepository;
-
-    @Autowired
     private ModelMapper modelMapper;
     @Override
     public FirestationDTO saveFirestation(FirestationDTO firestationDTO){
@@ -41,15 +38,16 @@ public class FirestationServiceImpl implements FirestationService {
         Firestation firestation = modelMapper.map(firestationDTO, Firestation.class);
         List<Firestation> listStationByAddress = firestationRepository.findByAddress(firestation.getAddress());
 
-        if(!listStationByAddress.get(0).getStation().equals(firestation.getStation())){
-            firestationRepository.save(firestation);
+        if(!listStationByAddress.isEmpty()){
+            firestation.setId(listStationByAddress.get(0).getId());
+            firestation = firestationRepository.save(firestation);
         }
+
         return modelMapper.map(firestation, FirestationDTO.class);
     }
 
-
     @Override
-    public boolean deleteFirestation(FirestationDTO firestationDTO){
+    public String deleteFirestation(FirestationDTO firestationDTO){
         Firestation firestation = modelMapper.map(firestationDTO, Firestation.class);
 
         List<Firestation> listStationByNumber = firestationRepository.findByStation(firestation.getStation());
@@ -57,13 +55,12 @@ public class FirestationServiceImpl implements FirestationService {
 
         if(listStationByNumber.isEmpty()){
             firestationRepository.delete(listStationByAddress.get(0));
-            return true;
+            return "Succes";
         } else {
             firestationRepository.delete(listStationByNumber.get(0));
-            return true;
+            return "Error";
         }
     }
-
 
 }
 

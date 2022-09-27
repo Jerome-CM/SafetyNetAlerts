@@ -23,9 +23,8 @@ public class PersonCRUD {
     }
 
     @DeleteMapping("/person")
-    public void deletePerson(@RequestBody PersonDTO personDTO){
-        personServiceImpl.delete(personDTO);
-
+    public String deletePerson(@RequestBody PersonDTO personDTO){
+       return personServiceImpl.delete(personDTO);
     }
 
 }

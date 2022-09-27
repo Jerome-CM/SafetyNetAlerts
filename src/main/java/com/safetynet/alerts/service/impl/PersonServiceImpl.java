@@ -34,18 +34,22 @@ public class PersonServiceImpl implements PersonService {
         Person person = modelMapper.map(personDTO, Person.class);
         List<Person>personfind = personRepository.getPersons(person.getFirstName(), person.getLastName());
         if(!personfind.isEmpty()) {
+            person.setId(personfind.get(0).getId());
             personRepository.save(person);
         }
         return modelMapper.map(person, PersonDTO.class);
     }
 
     @Override
-    public void delete(PersonDTO personDTO){
+    public String delete(PersonDTO personDTO){
         Person person = modelMapper.map(personDTO, Person.class);
         List<Person> listPerson = personRepository.getPersons(person.getFirstName(), person.getLastName());
         if(!listPerson.isEmpty()){
             personRepository.delete(listPerson.get(0));
+            return "Suuces";
         }
+
+        return "Error";
     }
 
 }

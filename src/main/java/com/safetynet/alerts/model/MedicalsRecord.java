@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,8 @@ public class MedicalsRecord extends Model{
 	private Person person;
 
 	@ManyToMany
-	private List<Medicament> medicaments;
+	private List<Medicament> medicaments = new ArrayList<>();
 
 	@ManyToMany
-	private List<Allergie> allergies;
+	private List<Allergie> allergies = new ArrayList<>();
 }
