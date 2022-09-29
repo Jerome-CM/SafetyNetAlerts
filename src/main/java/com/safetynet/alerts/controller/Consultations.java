@@ -1,6 +1,6 @@
 package com.safetynet.alerts.controller;
 
-import com.safetynet.alerts.model.Person;
+import com.safetynet.alerts.dto.ConsultationDTO.PersonAgeDTO;
 import com.safetynet.alerts.service.impl.ConsultationServiceImpl;
 import com.safetynet.alerts.service.impl.FirestationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class Consultations {
@@ -21,12 +22,12 @@ public class Consultations {
     FirestationServiceImpl firestationServiceImpl;
 
     @GetMapping("/firestation")
-    public List<Person> firestationCoverage(@RequestParam String stationNumber){
+    public List<Object> firestationCoverage(@RequestParam String stationNumber){
         return consultationServiceImpl.firestationCoverage(stationNumber);
     }
 
     @GetMapping("/childAlert")
-    public List<Person> childsAndOtherMembersInHouse(@RequestParam String address){
+    public List<PersonAgeDTO> childsAndOtherMembersInHouse(@RequestParam String address){
         return consultationServiceImpl.childsAndOtherMembersInHouse(address);
     }
 
@@ -40,9 +41,14 @@ public class Consultations {
         return consultationServiceImpl.whoLivingAtThisAddress(address);
     }
 
+    @GetMapping("/flood/stations")
+    public Map<String,Object> stations(@RequestParam List<String> stations){
+        return consultationServiceImpl.stationsListPersons(stations);
+    }
+
     @GetMapping("/personInfo")
-    public ArrayList<Object> personInfo(@RequestParam String lastName){
-        return consultationServiceImpl.personInfo(lastName);
+    public ArrayList<Object> personInfo(@RequestParam String firstName,  String lastName){
+        return consultationServiceImpl.personInfo(firstName,lastName);
     }
 
     @GetMapping("/communityEmail")
