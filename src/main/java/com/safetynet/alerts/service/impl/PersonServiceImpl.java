@@ -5,6 +5,8 @@ import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.service.interf.PersonService;
 import com.safetynet.alerts.utility.Utility;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import java.util.Optional;
 @Service
 public class PersonServiceImpl implements PersonService {
 
+    private static final Logger logger = LogManager.getLogger(PersonServiceImpl.class);
+
     @Autowired
     private PersonRepository personRepository;
 
@@ -25,10 +29,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PersonDTO add(PersonDTO personDTO) {
         Person person = modelMapper.map(personDTO, Person.class);
-        personRepository.save(person);
+        person = personRepository.save(person);
+        logger.info("--- New user --- ID : " + person.getId());
         return modelMapper.map(person, PersonDTO.class);
     }
-// TODO A vérifier
+
     @Override
     public PersonDTO update(PersonDTO personDTO){
         Person person = modelMapper.map(personDTO, Person.class);
@@ -36,6 +41,9 @@ public class PersonServiceImpl implements PersonService {
         if(!personfind.isEmpty()) {
             person.setId(personfind.get(0).getId());
             personRepository.save(person);
+            logger.info("--- User update --- ID : " + person.getId());
+        } else {
+            logger.error("Firstname : {} Lastname : {} is not find in BDD for update", person.getFirstName(), person.getLastName());
         }
         return modelMapper.map(person, PersonDTO.class);
     }
@@ -46,9 +54,10 @@ public class PersonServiceImpl implements PersonService {
         List<Person> listPerson = personRepository.getPersons(person.getFirstName(), person.getLastName());
         if(!listPerson.isEmpty()){
             personRepository.delete(listPerson.get(0));
-            return "Suuces";
+            logger.info("--- User delete ---");
+            return "Succes";
         }
-
+        logger.error("Cannot delete this user; ID :" + listPerson.get(0).getId());
         return "Error";
     }
 

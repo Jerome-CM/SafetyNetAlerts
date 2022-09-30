@@ -8,13 +8,17 @@ import com.safetynet.alerts.repository.MedicalsRecordRepository;
 import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.service.interf.ConsultationService;
 import com.safetynet.alerts.utility.Utility;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
+import org.apache.logging.log4j.Logger;
+
 
 @Service
 public class ConsultationServiceImpl implements ConsultationService {
+
+    private static final Logger logger = LogManager.getLogger(ConsultationServiceImpl.class);
 
     @Autowired
     PersonRepository personRepository;
@@ -220,6 +224,8 @@ public class ConsultationServiceImpl implements ConsultationService {
                 }
 
                 listInfosPersonsByAddress.put("Station " + numStation + " : " + listPerson.get(0).getAddress(), listInfosPersons);
+            } else {
+                logger.warn("We don't find the required station : " + numStation);
             }
 
         }
@@ -263,6 +269,7 @@ public class ConsultationServiceImpl implements ConsultationService {
         ArrayList<String> listEmail = new ArrayList<String>();
         Iterable<Person> listPersons = personRepository.findByCity(city);
         listPersons.forEach(person -> listEmail.add(person.getEmail()));
+        logger.info("--- List Mail send ---");
         return listEmail;
     }
 
