@@ -1,8 +1,10 @@
 package com.safetynet.alerts.controller;
 
 import com.safetynet.alerts.dto.ConsultationDTO.PersonAgeDTO;
+import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.impl.ConsultationServiceImpl;
 import com.safetynet.alerts.service.impl.FirestationServiceImpl;
+import com.safetynet.alerts.service.impl.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
