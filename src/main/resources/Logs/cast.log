@@ -1190,3 +1190,382 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2022-10-03 21:13:25 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-10-03 21:13:25 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-2 - Shutdown initiated...
 2022-10-03 21:13:25 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-2 - Shutdown completed.
+2022-10-04 08:46:25 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.safetynet.alerts.ConsultationImplTest], using SpringBootContextLoader
+2022-10-04 08:46:25 ---  INFO --- [o.s.t.c.s.AbstractContextLoader         ] : Could not detect default resource locations for test class [com.safetynet.alerts.ConsultationImplTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-10-04 08:46:25 ---  INFO --- [t.c.s.AnnotationConfigContextLoaderUtils] : Could not detect default configuration classes for test class [com.safetynet.alerts.ConsultationImplTest]: ConsultationImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-10-04 08:46:26 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Found @SpringBootConfiguration com.safetynet.alerts.AlertsApplication for test class com.safetynet.alerts.ConsultationImplTest
+2022-10-04 08:46:26 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-10-04 08:46:26 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@42c12b3e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2dbfa972, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@46f73ffa, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@41aebbb4, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@afde064, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5a592c70, org.springframework.test.context.transaction.TransactionalTestExecutionListener@252ec02e, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@11e9ac24, org.springframework.test.context.event.EventPublishingTestExecutionListener@74f280bd, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@675b18ff, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@34279b8a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@687389a6, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@8641b7d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@37c7766e, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3fb450d7]
+2022-10-04 08:46:27 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 08:46:28 ---  INFO --- [c.s.a.ConsultationImplTest              ] : Starting ConsultationImplTest using Java 18.0.1.1 on MacBook-de-jerome.local with PID 28528 (started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 08:46:28 --- DEBUG --- [c.s.a.ConsultationImplTest              ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 08:46:28 ---  INFO --- [c.s.a.ConsultationImplTest              ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 08:46:30 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 08:46:30 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 166 ms. Found 5 JPA repository interfaces.
+2022-10-04 08:46:33 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 08:46:33 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 08:46:34 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 08:46:34 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 08:46:43 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 08:46:44 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 08:47:05 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 08:47:05 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 08:47:10 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 08:47:13 ---  INFO --- [c.s.a.ConsultationImplTest              ] : Started ConsultationImplTest in 46.945 seconds (JVM running for 54.316)
+2022-10-04 08:47:13 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 08:47:15 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.safetynet.alerts.UtilityTest], using SpringBootContextLoader
+2022-10-04 08:47:15 ---  INFO --- [o.s.t.c.s.AbstractContextLoader         ] : Could not detect default resource locations for test class [com.safetynet.alerts.UtilityTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-10-04 08:47:15 ---  INFO --- [t.c.s.AnnotationConfigContextLoaderUtils] : Could not detect default configuration classes for test class [com.safetynet.alerts.UtilityTest]: UtilityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-10-04 08:47:15 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Found @SpringBootConfiguration com.safetynet.alerts.AlertsApplication for test class com.safetynet.alerts.UtilityTest
+2022-10-04 08:47:15 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-10-04 08:47:15 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4e11bd10, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@69c716a5, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@31250df9, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@528294aa, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@11384ad7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@401b146b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@59c88354, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1f296b03, org.springframework.test.context.event.EventPublishingTestExecutionListener@4c14e4c3, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@54b40966, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@497be287, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1ddef9d8, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7687345c, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@20cfcd3, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@147549cf]
+2022-10-04 08:47:16 ---  INFO --- [c.s.a.UtilityTest                       ] : Starting UtilityTest using Java 18.0.1.1 on MacBook-de-jerome.local with PID 28528 (started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 08:47:16 --- DEBUG --- [c.s.a.UtilityTest                       ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 08:47:16 ---  INFO --- [c.s.a.UtilityTest                       ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 08:47:17 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 08:47:17 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 75 ms. Found 5 JPA repository interfaces.
+2022-10-04 08:47:18 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 08:47:18 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-2 - Starting...
+2022-10-04 08:47:19 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-2 - Start completed.
+2022-10-04 08:47:19 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 08:47:22 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 08:47:22 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 08:47:24 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 08:47:25 ---  INFO --- [o.s.b.t.m.w.SpringBootMockServletContext] : Initializing Spring TestDispatcherServlet ''
+2022-10-04 08:47:25 ---  INFO --- [o.s.t.w.s.TestDispatcherServlet         ] : Initializing Servlet ''
+2022-10-04 08:47:25 ---  INFO --- [o.s.t.w.s.TestDispatcherServlet         ] : Completed initialization in 4 ms
+2022-10-04 08:47:25 ---  INFO --- [c.s.a.UtilityTest                       ] : Started UtilityTest in 9.405 seconds (JVM running for 65.697)
+2022-10-04 08:47:25 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 08:47:25 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.safetynet.alerts.PersonServiceImplTest], using SpringBootContextLoader
+2022-10-04 08:47:25 ---  INFO --- [o.s.t.c.s.AbstractContextLoader         ] : Could not detect default resource locations for test class [com.safetynet.alerts.PersonServiceImplTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-10-04 08:47:25 ---  INFO --- [t.c.s.AnnotationConfigContextLoaderUtils] : Could not detect default configuration classes for test class [com.safetynet.alerts.PersonServiceImplTest]: PersonServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-10-04 08:47:25 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Found @SpringBootConfiguration com.safetynet.alerts.AlertsApplication for test class com.safetynet.alerts.PersonServiceImplTest
+2022-10-04 08:47:25 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-10-04 08:47:25 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@ea6711, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1aa6473c, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@799ba6ff, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2bf95bf1, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@78787370, org.springframework.test.context.support.DirtiesContextTestExecutionListener@50cf54e4, org.springframework.test.context.transaction.TransactionalTestExecutionListener@74c7bc5c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@158047e6, org.springframework.test.context.event.EventPublishingTestExecutionListener@2e5855d5, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@49a4c8e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4df6251d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5a5ef432, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3644e451, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@60ec202b, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1c4e3fe6]
+2022-10-04 08:47:26 ---  INFO --- [.b.t.a.w.s.WebMvcTestContextBootstrapper] : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.safetynet.alerts.PersonCRUDTest], using SpringBootContextLoader
+2022-10-04 08:47:26 ---  INFO --- [o.s.t.c.s.AbstractContextLoader         ] : Could not detect default resource locations for test class [com.safetynet.alerts.PersonCRUDTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-10-04 08:47:26 ---  INFO --- [t.c.s.AnnotationConfigContextLoaderUtils] : Could not detect default configuration classes for test class [com.safetynet.alerts.PersonCRUDTest]: PersonCRUDTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-10-04 08:47:26 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Found @SpringBootConfiguration com.safetynet.alerts.AlertsApplication for test class com.safetynet.alerts.PersonCRUDTest
+2022-10-04 08:47:26 ---  INFO --- [.b.t.a.w.s.WebMvcTestContextBootstrapper] : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-10-04 08:47:26 ---  INFO --- [.b.t.a.w.s.WebMvcTestContextBootstrapper] : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6a7cacc3, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@629a40b2, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@38849003, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6cc5d765, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6350648a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@537f2782, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4f67b166, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@ddb2910, org.springframework.test.context.event.EventPublishingTestExecutionListener@6d4f6815, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@47260109, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3538740a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@617f4814, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@77e69bee, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@3ff252, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@76515e7b]
+2022-10-04 08:47:26 ---  INFO --- [c.s.a.PersonCRUDTest                    ] : Starting PersonCRUDTest using Java 18.0.1.1 on MacBook-de-jerome.local with PID 28528 (started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 08:47:26 --- DEBUG --- [c.s.a.PersonCRUDTest                    ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 08:47:26 ---  INFO --- [c.s.a.PersonCRUDTest                    ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 08:47:28 ---  INFO --- [o.s.b.t.m.w.SpringBootMockServletContext] : Initializing Spring TestDispatcherServlet ''
+2022-10-04 08:47:28 ---  INFO --- [o.s.t.w.s.TestDispatcherServlet         ] : Initializing Servlet ''
+2022-10-04 08:47:28 ---  INFO --- [o.s.t.w.s.TestDispatcherServlet         ] : Completed initialization in 2 ms
+2022-10-04 08:47:28 ---  INFO --- [c.s.a.PersonCRUDTest                    ] : Started PersonCRUDTest in 2.083 seconds (JVM running for 68.629)
+2022-10-04 08:47:28 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 08:47:28 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.safetynet.alerts.AlertsApplicationTests], using SpringBootContextLoader
+2022-10-04 08:47:28 ---  INFO --- [o.s.t.c.s.AbstractContextLoader         ] : Could not detect default resource locations for test class [com.safetynet.alerts.AlertsApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-10-04 08:47:28 ---  INFO --- [t.c.s.AnnotationConfigContextLoaderUtils] : Could not detect default configuration classes for test class [com.safetynet.alerts.AlertsApplicationTests]: AlertsApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-10-04 08:47:28 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Found @SpringBootConfiguration com.safetynet.alerts.AlertsApplication for test class com.safetynet.alerts.AlertsApplicationTests
+2022-10-04 08:47:28 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-10-04 08:47:28 ---  INFO --- [.b.t.c.SpringBootTestContextBootstrapper] : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@65fbbaf6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@50d6c88, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3f23f106, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@35e9d5c1, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@d7de580, org.springframework.test.context.support.DirtiesContextTestExecutionListener@63faa18b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@43f1d733, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@384d4551, org.springframework.test.context.event.EventPublishingTestExecutionListener@5afee63d, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6c3ee210, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@21bbe8eb, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@730e5640, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5e6c9912, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@45d9cead, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3b5b8a4d]
+2022-10-04 08:47:29 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 08:47:29 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 08:47:29 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 08:47:29 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 08:47:29 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-2 - Shutdown initiated...
+2022-10-04 08:47:29 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-2 - Shutdown completed.
+2022-10-04 09:18:55 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 09:18:55 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 30046 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 09:18:55 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 09:18:55 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 09:18:57 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 09:18:57 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 333 ms. Found 5 JPA repository interfaces.
+2022-10-04 09:19:00 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 09:19:00 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 09:19:00 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 09:19:00 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 09:19:00 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 09:19:00 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 5042 ms
+2022-10-04 09:19:01 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 09:19:01 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 09:19:02 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 09:19:02 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 09:19:07 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 09:19:07 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 09:19:12 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 09:19:12 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 09:19:14 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 09:19:17 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 09:19:17 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 09:19:18 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 24.129 seconds (JVM running for 27.428)
+2022-10-04 09:19:18 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 09:19:21 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-04 09:19:21 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Initializing Servlet 'dispatcherServlet'
+2022-10-04 09:19:21 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Completed initialization in 3 ms
+2022-10-04 09:41:19 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 09:41:19 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 09:41:20 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 09:42:02 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 09:42:02 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 30875 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 09:42:02 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 09:42:02 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 09:42:04 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 09:42:05 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 192 ms. Found 5 JPA repository interfaces.
+2022-10-04 09:42:06 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 09:42:06 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 09:42:06 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 09:42:06 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 09:42:06 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 09:42:06 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 4333 ms
+2022-10-04 09:42:07 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 09:42:07 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 09:42:07 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 09:42:08 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 09:42:09 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 09:42:09 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 09:42:12 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 09:42:12 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 09:42:13 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 09:42:14 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 09:42:14 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 09:42:14 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 13.382 seconds (JVM running for 16.319)
+2022-10-04 09:42:14 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 09:42:32 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-04 09:42:32 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Initializing Servlet 'dispatcherServlet'
+2022-10-04 09:42:32 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Completed initialization in 14 ms
+2022-10-04 09:44:48 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 09:44:48 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 09:44:48 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 09:45:59 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 09:45:59 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 31011 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 09:45:59 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 09:45:59 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 09:46:02 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 09:46:02 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 270 ms. Found 5 JPA repository interfaces.
+2022-10-04 09:46:04 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 09:46:04 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 09:46:04 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 09:46:04 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 09:46:05 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 09:46:05 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 5965 ms
+2022-10-04 09:46:06 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 09:46:06 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 09:46:07 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 09:46:08 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 09:46:09 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 09:46:09 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 09:46:12 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 09:46:12 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 09:46:15 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 09:46:16 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 09:46:16 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 09:46:16 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 18.161 seconds (JVM running for 22.732)
+2022-10-04 09:46:16 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 09:48:36 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 09:48:36 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 09:48:36 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 09:49:42 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 09:49:42 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 31121 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 09:49:42 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 09:49:42 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 09:49:46 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 09:49:46 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 396 ms. Found 5 JPA repository interfaces.
+2022-10-04 09:49:54 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 09:49:54 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 09:49:54 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 09:49:54 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 09:49:56 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 09:49:56 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 12978 ms
+2022-10-04 09:49:57 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 09:49:57 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 09:49:59 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 09:50:00 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 09:50:03 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 09:50:04 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 09:50:11 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 09:50:11 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 09:50:13 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 09:50:14 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 09:50:14 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 09:50:14 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 32.429 seconds (JVM running for 35.748)
+2022-10-04 09:50:14 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 09:50:19 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-04 09:50:19 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Initializing Servlet 'dispatcherServlet'
+2022-10-04 09:50:19 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Completed initialization in 10 ms
+2022-10-04 10:25:48 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 10:25:48 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 10:25:49 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 10:26:44 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 10:26:45 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 32355 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 10:26:45 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 10:26:45 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 10:26:47 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 10:26:47 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 156 ms. Found 5 JPA repository interfaces.
+2022-10-04 10:26:49 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 10:26:49 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 10:26:49 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 10:26:49 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 10:26:49 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 10:26:49 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 4524 ms
+2022-10-04 10:26:50 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 10:26:50 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 10:26:50 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 10:26:51 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 10:26:52 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 10:26:52 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 10:26:56 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 10:26:56 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 10:26:58 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 10:26:59 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 10:26:59 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 10:26:59 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 15.356 seconds (JVM running for 18.342)
+2022-10-04 10:26:59 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 10:29:21 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-04 10:29:21 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Initializing Servlet 'dispatcherServlet'
+2022-10-04 10:29:21 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Completed initialization in 58 ms
+2022-10-04 10:42:11 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 10:42:11 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 10:42:11 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 10:43:10 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 10:43:10 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 32918 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 10:43:10 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 10:43:10 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 10:43:13 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 10:43:13 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 632 ms. Found 5 JPA repository interfaces.
+2022-10-04 10:43:15 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 10:43:16 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 10:43:16 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 10:43:16 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 10:43:16 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 10:43:16 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 5848 ms
+2022-10-04 10:43:16 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 10:43:16 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 10:43:17 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 10:43:17 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 10:43:18 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 10:43:18 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 10:43:22 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 10:43:22 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 10:43:27 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 10:43:28 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 10:43:28 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 10:43:28 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 19.474 seconds (JVM running for 23.923)
+2022-10-04 10:43:28 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 10:48:47 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-04 10:48:47 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Initializing Servlet 'dispatcherServlet'
+2022-10-04 10:48:47 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Completed initialization in 50 ms
+2022-10-04 14:31:05 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 14:31:05 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 14:31:05 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 14:31:38 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 14:31:38 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 37200 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 14:31:38 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 14:31:38 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 14:31:40 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 14:31:40 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 92 ms. Found 5 JPA repository interfaces.
+2022-10-04 14:31:41 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 14:31:41 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 14:31:41 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 14:31:41 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 14:31:42 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 14:31:42 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 3246 ms
+2022-10-04 14:31:42 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 14:31:42 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 14:31:42 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 14:31:43 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 14:31:44 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 14:31:44 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 14:31:47 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 14:31:47 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 14:31:49 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 14:31:51 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 14:31:51 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 14:31:51 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 13.991 seconds (JVM running for 18.285)
+2022-10-04 14:31:51 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 14:37:36 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-04 14:37:36 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Initializing Servlet 'dispatcherServlet'
+2022-10-04 14:37:36 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Completed initialization in 44 ms
+2022-10-04 14:47:40 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 14:47:40 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 14:47:40 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 14:48:04 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 14:48:04 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 37552 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 14:48:04 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 14:48:04 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 14:48:06 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 14:48:07 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 89 ms. Found 5 JPA repository interfaces.
+2022-10-04 14:48:07 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 14:48:08 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 14:48:08 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 14:48:08 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 14:48:08 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 14:48:08 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 3006 ms
+2022-10-04 14:48:08 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 14:48:08 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 14:48:08 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 14:48:09 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 14:48:09 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 14:48:09 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 14:48:11 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 14:48:11 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 14:48:12 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 14:48:12 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 14:48:12 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 14:48:12 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 8.69 seconds (JVM running for 10.086)
+2022-10-04 14:48:12 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 14:51:20 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-04 14:51:20 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Initializing Servlet 'dispatcherServlet'
+2022-10-04 14:51:20 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Completed initialization in 20 ms
+2022-10-04 14:54:09 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 14:54:09 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 14:54:09 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 14:54:31 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 14:54:31 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 37696 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 14:54:31 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 14:54:31 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 14:54:33 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 14:54:33 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 92 ms. Found 5 JPA repository interfaces.
+2022-10-04 14:54:34 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 14:54:34 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 14:54:34 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 14:54:34 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 14:54:34 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 14:54:34 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 2965 ms
+2022-10-04 14:54:35 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 14:54:35 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 14:54:35 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 14:54:35 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 14:54:36 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 14:54:36 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 14:54:38 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 14:54:38 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 14:54:39 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 14:54:39 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 14:54:39 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 14:54:39 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 8.517 seconds (JVM running for 10.256)
+2022-10-04 14:54:39 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 14:58:15 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 14:58:15 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 14:58:15 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.
+2022-10-04 14:58:31 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-04 14:58:31 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 37797 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-04 14:58:31 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-04 14:58:31 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-04 14:58:33 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-04 14:58:33 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 80 ms. Found 5 JPA repository interfaces.
+2022-10-04 14:58:34 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-04 14:58:34 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-04 14:58:34 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-04 14:58:34 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-04 14:58:34 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-04 14:58:34 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 2197 ms
+2022-10-04 14:58:34 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-04 14:58:34 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-04 14:58:34 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-04 14:58:34 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-04 14:58:35 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-04 14:58:35 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-04 14:58:37 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-04 14:58:37 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 14:58:38 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-04 14:58:38 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-04 14:58:38 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-04 14:58:38 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 7.153 seconds (JVM running for 8.409)
+2022-10-04 14:58:38 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- Application ready ----\
+2022-10-04 15:10:09 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-04 15:10:09 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-04 15:10:09 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.

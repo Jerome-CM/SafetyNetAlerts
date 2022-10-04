@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 @Data
-public abstract class ListMedicamentsAndAllergies {
+public class ListMedicamentsAndAllergies {
 
     List<String> medications = new ArrayList<>();
     List<String> allergies = new ArrayList<>();

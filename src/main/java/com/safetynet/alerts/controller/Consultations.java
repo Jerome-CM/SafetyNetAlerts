@@ -1,6 +1,6 @@
 package com.safetynet.alerts.controller;
 
-import com.safetynet.alerts.dto.ConsultationDTO.PersonAgeDTO;
+import com.safetynet.alerts.dto.ConsultationDTO.*;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.service.impl.ConsultationServiceImpl;
 import com.safetynet.alerts.service.impl.FirestationServiceImpl;
@@ -24,12 +24,12 @@ public class Consultations {
     FirestationServiceImpl firestationServiceImpl;
 
     @GetMapping("/firestation")
-    public List<Object> firestationCoverage(@RequestParam String stationNumber){
+    public ListFirestationDTO firestationCoverage(@RequestParam String stationNumber){
         return consultationServiceImpl.firestationCoverage(stationNumber);
     }
 
     @GetMapping("/childAlert")
-    public List<PersonAgeDTO> childsAndOtherMembersInHouse(@RequestParam String address){
+    public ListFamillyDTO childsAndOtherMembersInHouse(@RequestParam String address){
         return consultationServiceImpl.childsAndOtherMembersInHouse(address);
     }
 
@@ -39,17 +39,17 @@ public class Consultations {
     }
 
     @GetMapping("/fire")
-    public ArrayList<Object> whoLivingAtThisAddress(@RequestParam String address){
+    public FireDTO whoLivingAtThisAddress(@RequestParam String address){
         return consultationServiceImpl.whoLivingAtThisAddress(address);
     }
 
     @GetMapping("/flood/stations")
-    public Map<String,Object> stations(@RequestParam List<String> stations){
+    public List<FireDTO> stations(@RequestParam List<String> stations){
         return consultationServiceImpl.stationsListPersons(stations);
     }
 
     @GetMapping("/personInfo")
-    public ArrayList<Object> personInfo(@RequestParam String firstName,  String lastName){
+    public List<PersonAndMedicalsRecordDTO> personInfo(@RequestParam String firstName, String lastName){
         return consultationServiceImpl.personInfo(firstName,lastName);
     }
 

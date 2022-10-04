@@ -1,6 +1,8 @@
+/*
 package com.safetynet.alerts;
 
 import com.safetynet.alerts.dto.ConsultationDTO.FireDTO;
+import com.safetynet.alerts.dto.ConsultationDTO.ListFirestationDTO;
 import com.safetynet.alerts.dto.ConsultationDTO.PersonAgeDTO;
 import com.safetynet.alerts.dto.ConsultationDTO.StationDTO;
 import com.safetynet.alerts.model.Person;
@@ -36,7 +38,7 @@ public class ConsultationImplTest {
     public void firestationCoverageTest(){
 
 
-        List<Object> testList = consultationServiceImpl.firestationCoverage("3");
+        ListFirestationDTO testList = consultationServiceImpl.firestationCoverage("3");
         List<Person> listPersonInBDD = personRepository.getPersonWithAddress(firestationRepository.findAddressByStation("3").get(0).getAddress());
 
         int removeNbrChildsAndAdultsInList = testList.size() - 2;
@@ -107,7 +109,8 @@ public class ConsultationImplTest {
         listStation.add("2");
 
         Map<String,Object> test = consultationServiceImpl.stationsListPersons(listStation);
-        
+
     }
 
 }
+*/
