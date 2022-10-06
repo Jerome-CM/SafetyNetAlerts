@@ -1,23 +1,24 @@
 package com.safetynet.alerts.service.interf;
 
-import com.safetynet.alerts.dto.ConsultationDTO.PersonAgeDTO;
+import com.safetynet.alerts.dto.ConsultationDTO.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public interface ConsultationService {
 
-    public List<Object> firestationCoverage(String stationNumber);
+    public ListFirestationDTO firestationCoverage(String stationNumber);
 
-    public List<PersonAgeDTO> childsAndOtherMembersInHouse(String address);
+    public ListFamillyDTO childsAndOtherMembersInHouse(String address);
 
     public List<String> getPhone(String stationNumber);
 
-    public ArrayList<Object> whoLivingAtThisAddress(String address);
+    public FireDTO whoLivingAtThisAddress(String address);
 
-    public Map<String,Object> stationsListPersons(List<String> stations);
+    public List<FireDTO> stationsListPersons(List<String> stations);
 
-    public ArrayList<Object> personInfo(String firstName, String lastName);
+    public List<PersonAndMedicalsRecordDTO> personInfo(String firstName, String lastName);
 
     public ArrayList<String> getMailByCity(String city);
 }

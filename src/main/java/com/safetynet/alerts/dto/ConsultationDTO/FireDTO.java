@@ -1,16 +1,15 @@
 package com.safetynet.alerts.dto.ConsultationDTO;
 
+import com.safetynet.alerts.dto.FirestationDTO;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class FireDTO extends ListMedicamentsAndAllergies{
+public class FireDTO {
 
-    private String nom;
-    private String phone;
-    private int age;
-    private String firestationNumber;
+    List<PersonAndMedicalsRecordDTO> person = new ArrayList<>();
+    private FirestationDTO firestation;
 
 }

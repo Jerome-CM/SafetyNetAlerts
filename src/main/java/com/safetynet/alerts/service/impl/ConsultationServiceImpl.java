@@ -1,6 +1,7 @@
 package com.safetynet.alerts.service.impl;
 
 import com.safetynet.alerts.dto.ConsultationDTO.*;
+import com.safetynet.alerts.dto.FirestationDTO;
 import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.repository.FirestationRepository;
@@ -30,79 +31,68 @@ public class ConsultationServiceImpl implements ConsultationService {
     MedicalsRecordRepository medicalsRecordRepository;
 
     @Override
-    public List<Object> firestationCoverage(String stationNumber){
+    public ListFirestationDTO firestationCoverage(String stationNumber){
 
         List<Firestation> listFirestationAdresse = firestationRepository.findAddressByStation(stationNumber);
         List<Person> listPersonCoverToThisStation = personRepository.getPersonWithAddress(listFirestationAdresse.get(0).getAddress());
 
-        int nbrAdult = 0;
-        int nbrChildren = 0;
-        FirestationDTO firestationDTO = new FirestationDTO();
-        List<Object> formatReturn = new ArrayList<>();
+        ListFirestationDTO formatReturn = new ListFirestationDTO();
 
         for (Person person : listPersonCoverToThisStation) {
+            PersonInfoDTO habitant = new PersonInfoDTO();
 
-            firestationDTO.setFirstName(person.getFirstName());
-            firestationDTO.setLastName(person.getLastName());
-            firestationDTO.setAddress(person.getAddress());
-            firestationDTO.setPhone(person.getPhone());
+            habitant.setFirstName(person.getFirstName());
+            habitant.setLastName(person.getLastName());
+            habitant.setAddress(person.getAddress());
+            habitant.setPhone(person.getPhone());
+            habitant.setAge(Utility.personAge(person.getBirthdate()));
+            habitant.setMail(person.getEmail());
 
-            formatReturn.add(firestationDTO);
+            formatReturn.getHabitants().add(habitant);
+
 
             if (Utility.isAdult(person.getBirthdate())) {
-                nbrAdult++;
+                formatReturn.setNbrAdults(formatReturn.getNbrAdults() + 1);
             } else {
-                nbrChildren++;
+                formatReturn.setNbrEnfants(formatReturn.getNbrEnfants() + 1);
             }
         }
-
-        formatReturn.add("Adult(s) : " + nbrAdult);
-        formatReturn.add("Children(s) : " + nbrChildren);
 
         return formatReturn;
     }
 
     @Override
-    public List<PersonAgeDTO> childsAndOtherMembersInHouse(String address){
+    public ListFamillyDTO childsAndOtherMembersInHouse(String address){
 
         List<Person> listPersonToThisAddress = personRepository.getPersonWithAddress(address);
 
-        int nbrAdult = 0;
-        int nbrChildren = 0;
-
-        List<PersonAgeDTO> listOtherDTO = new ArrayList<>();
-        List<PersonAgeDTO> listChildsDTO = new ArrayList<>();
+        List<PersonInfoDTO> listOtherDTO = new ArrayList<>();
+        List<PersonInfoDTO> listChildsDTO = new ArrayList<>();
 
         for (Person person : listPersonToThisAddress) {
 
-            PersonAgeDTO PersonAgeDTO = new PersonAgeDTO();
+            PersonInfoDTO habitant = new PersonInfoDTO();
+
+            habitant.setFirstName(person.getFirstName());
+            habitant.setLastName(person.getLastName());
+            habitant.setAddress(person.getAddress());
+            habitant.setPhone(person.getPhone());
+            habitant.setAge(Utility.personAge(person.getBirthdate()));
+            habitant.setMail(person.getEmail());
 
             if (Utility.isAdult(person.getBirthdate())) {
-                PersonAgeDTO.setFirstName(person.getFirstName());
-                PersonAgeDTO.setLastName(person.getLastName());
-                PersonAgeDTO.setAge(Utility.personAge(person.getBirthdate()));
-                listOtherDTO.add(PersonAgeDTO);
-                nbrAdult++;
+                listOtherDTO.add(habitant);
             } else {
-                PersonAgeDTO.setFirstName(person.getFirstName());
-                PersonAgeDTO.setLastName(person.getLastName());
-                PersonAgeDTO.setAge(Utility.personAge(person.getBirthdate()));
-                listChildsDTO.add(PersonAgeDTO);
-                nbrChildren++;
+                listChildsDTO.add(habitant);
             }
         }
 
-        List<PersonAgeDTO> formatReturn = new ArrayList<>();
+        ListFamillyDTO famille = new ListFamillyDTO();
 
-        if(nbrChildren > 0){
+        famille.setEnfants(listChildsDTO);
+        famille.setAdultes(listOtherDTO);
 
-            formatReturn.addAll(listChildsDTO);
-            formatReturn.addAll(listOtherDTO);
-
-            return formatReturn;
-        } else {
-            return formatReturn;
-        }
+        return famille;
     }
 
     @Override
@@ -123,9 +113,11 @@ public class ConsultationServiceImpl implements ConsultationService {
 
         List<String> listPhone = new ArrayList<>();
 
-        for (List<Person> personList : listPerson){
-            for (Person person : personList){
-                listPhone.add(person.getPhone());
+        for (List<Person> personList : listPerson) {
+            for (Person person : personList) {
+                if (!listPhone.contains(person.getPhone())) {
+                    listPhone.add(person.getPhone());
+                }
             }
         }
 
@@ -133,25 +125,29 @@ public class ConsultationServiceImpl implements ConsultationService {
     }
 
     @Override
-    public ArrayList<Object> whoLivingAtThisAddress(String address) {
+    public FireDTO whoLivingAtThisAddress(String address) {
 
+        FireDTO fireDTO = new FireDTO();
         List<Person> listPerson = personRepository.getPersonWithAddress(address);
 
-        ArrayList<Object> listInfosPersons = new ArrayList<Object>();
+       // ArrayList<Object> listInfosPersons = new ArrayList<Object>();
 
         for (Person person : listPerson) {
 
-            FireDTO fireDTO = new FireDTO();
+            PersonAndMedicalsRecordDTO personDTO = new PersonAndMedicalsRecordDTO();
 
-            fireDTO.setNom(person.getLastName());
-            fireDTO.setPhone(person.getPhone());
-            fireDTO.setAge(Utility.personAge(person.getBirthdate()));
+            personDTO.setFirstName(person.getFirstName());
+            personDTO.setLastName(person.getLastName());
+            personDTO.setPhone(person.getPhone());
+            personDTO.setAddress(person.getAddress());
+            personDTO.setAge(Utility.personAge(person.getBirthdate()));
+            personDTO.setMail(person.getEmail());
 
             Optional<Long> haveMedicalsRecord;
             haveMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(person.getId());
 
-            List<String> medicamentListDTO = fireDTO.getMedications();
-            List<String> allergieListDTO = fireDTO.getAllergies();
+            List<String> medicamentListDTO = new ArrayList<>();
+            List<String> allergieListDTO = new ArrayList<>();
 
             if (haveMedicalsRecord.isPresent()) {
 
@@ -160,117 +156,105 @@ public class ConsultationServiceImpl implements ConsultationService {
 
                 if (!medicamentListTest.isEmpty()) {
                     medicamentListDTO.addAll(medicamentListTest);
+                    personDTO.getMedicalsRecord().setMedications(medicamentListDTO);
                 }
 
                 if (!allergieListTest.isEmpty()) {
                     allergieListDTO.addAll(allergieListTest);
+                    personDTO.getMedicalsRecord().setAllergies(allergieListDTO);
                 }
 
             }
 
-            fireDTO.setFirestationNumber(firestationRepository.findByAddress(address).get(0).getStation());
+            fireDTO.getPerson().add(personDTO);
 
-            listInfosPersons.add(fireDTO);
+            List<Firestation> listStationByAddress = firestationRepository.findByAddress(address);
+            FirestationDTO firestation = new FirestationDTO();
 
-        }
-
-        return listInfosPersons;
-    }
-
-
-    @Override
-    public Map<String,Object> stationsListPersons(List<String> stations){
-
-        Map<String,Object> listInfosPersonsByAddress = new HashMap<String, Object>();
-
-        for(String numStation : stations){
-
-            if(!firestationRepository.findAddressByStation(numStation).isEmpty()){
-
-                List<Person> listPerson = personRepository.getPersonWithAddress(firestationRepository.findAddressByStation(numStation).get(0).getAddress());
-                List<Object> listInfosPersons = new ArrayList<>();
-                String address = null;
-
-                for(Person person : listPerson) {
-
-                    StationDTO stationDTO = new StationDTO();
-
-                    stationDTO.setNom(person.getLastName());
-                    stationDTO.setAge(Utility.personAge(person.getBirthdate()));
-                    stationDTO.setPhone(person.getPhone());
-
-                    Optional<Long> haveMedicalsRecord;
-                    haveMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(person.getId());
-
-                    List<String> medicamentListDTO = stationDTO.getMedications();
-                    List<String> allergieListDTO = stationDTO.getAllergies();
-
-                    if (haveMedicalsRecord.isPresent()) {
-
-                        List<String> medicamentListTest = medicalsRecordRepository.findMedicamentsListByMedicalsRecordsId(haveMedicalsRecord.get());
-                        List<String> allergieListTest = medicalsRecordRepository.findAllergiesListByMedicalsRecordsId(haveMedicalsRecord.get());
-
-                        if (!medicamentListTest.isEmpty()) {
-                            medicamentListDTO.addAll(medicamentListTest);
-                        }
-
-                        if (!allergieListTest.isEmpty()) {
-                            allergieListDTO.addAll(allergieListTest);
-                        }
-
-                    }
-
-                    listInfosPersons.add(stationDTO);
-                }
-
-                listInfosPersonsByAddress.put("Station " + numStation + " : " + listPerson.get(0).getAddress(), listInfosPersons);
-            } else {
-                logger.warn("We don't find the required station : " + numStation);
+            if(!listStationByAddress.isEmpty()){
+                firestation.setAddress(address);
+                firestation.setStation(listStationByAddress.get(0).getStation());
             }
 
+            fireDTO.setFirestation(firestation);
+
         }
 
-        return listInfosPersonsByAddress;
+        return fireDTO;
     }
 
 
     @Override
-    public ArrayList<Object> personInfo(String firstName, String lastName) {
+    public List<FireDTO> stationsListPersons(List<String> stations){
 
-        ArrayList<Object> listInfosPersons = new ArrayList<>();
+        List<FireDTO> listFireDTO = new ArrayList<>();
+        List<Firestation> firestations = firestationRepository.findByListStationNumber(stations);
+
+        for(Firestation firestation : firestations) {
+            listFireDTO.add(this.whoLivingAtThisAddress(firestation.getAddress()));
+        }
+
+        return listFireDTO;
+    }
+
+
+    @Override
+    public List<PersonAndMedicalsRecordDTO> personInfo(String firstName, String lastName) {
+
+        List<PersonAndMedicalsRecordDTO> listReturn = new ArrayList<>();
 
         List<Person> listPersons = personRepository.getPersons(firstName, lastName);
 
-        if(!listPersons.isEmpty()){
+        if (!listPersons.isEmpty()) {
 
-            for (Person person : listPersons){
+            for (Person person : listPersons) {
 
-                PersonInfoDTO personInfoDTO = new PersonInfoDTO();
+                PersonAndMedicalsRecordDTO habitant = new PersonAndMedicalsRecordDTO();
 
-                personInfoDTO.setNom(person.getLastName());
-                personInfoDTO.setAddress(person.getAddress());
-                personInfoDTO.setAge(Utility.personAge(person.getBirthdate()));
-                personInfoDTO.setMail(person.getEmail());
+                habitant.setFirstName(person.getFirstName());
+                habitant.setLastName(person.getLastName());
+                habitant.setAddress(person.getAddress());
+                habitant.setPhone(person.getPhone());
+                habitant.setAge(Utility.personAge(person.getBirthdate()));
+                habitant.setMail(person.getEmail());
 
-                personInfoDTO.setMedications(medicalsRecordRepository.findMedicamentsListByMedicalsRecordsId(medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(person.getId()).get()));
-                personInfoDTO.setAllergies(medicalsRecordRepository.findAllergiesListByMedicalsRecordsId(medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(person.getId()).get()));
+                List<String> medicamentListDTO = new ArrayList<>();
+                List<String> allergieListDTO = new ArrayList<>();
 
-                listInfosPersons.add(personInfoDTO);
+                Optional<Long> haveMedicalsRecord;
+                haveMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(person.getId());
 
+                List<String> medicamentListTest = medicalsRecordRepository.findMedicamentsListByMedicalsRecordsId(haveMedicalsRecord.get());
+                List<String> allergieListTest = medicalsRecordRepository.findAllergiesListByMedicalsRecordsId(haveMedicalsRecord.get());
+
+                if (!medicamentListTest.isEmpty()) {
+                    medicamentListDTO.addAll(medicamentListTest);
+                    habitant.getMedicalsRecord().setMedications(medicamentListDTO);
+                }
+
+                if (!allergieListTest.isEmpty()) {
+                    allergieListDTO.addAll(allergieListTest);
+                    habitant.getMedicalsRecord().setAllergies(allergieListDTO);
+                }
+
+                listReturn.add(habitant);
             }
-
         }
-
-        return listInfosPersons;
+        return listReturn;
     }
+
 
     @Override
     public ArrayList<String> getMailByCity(String city){
         ArrayList<String> listEmail = new ArrayList<String>();
         Iterable<Person> listPersons = personRepository.findByCity(city);
-        listPersons.forEach(person -> listEmail.add(person.getEmail()));
-        logger.info("--- List Mail send ---");
+        for( Person person : listPersons){
+            if(!person.getEmail().isEmpty()){
+                if (!listEmail.contains(person.getEmail())){
+                    listEmail.add(person.getEmail());
+                }
+            }
+        }
         return listEmail;
     }
-
 }

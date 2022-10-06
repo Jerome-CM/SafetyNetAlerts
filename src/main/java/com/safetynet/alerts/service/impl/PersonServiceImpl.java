@@ -4,16 +4,13 @@ import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.service.interf.PersonService;
-import com.safetynet.alerts.utility.Utility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -25,6 +22,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Override
+    public List<Person> getPersons(){
+        return (List<Person>) personRepository.findAll();
+    }
 
     @Override
     public PersonDTO add(PersonDTO personDTO) {
