@@ -1,4 +1,4 @@
-package com.safetynet.alerts;
+package com.safetynet.alerts.Controller;
 
 import com.safetynet.alerts.controller.PersonCRUD;
 import com.safetynet.alerts.service.impl.PersonServiceImpl;
@@ -26,9 +26,9 @@ public class PersonCRUDTest {
         mockMvc.perform(get("/test")).andExpect(status().isOk());
     }
 
+
    /* @Test
     public void addPersonTest()throws Exception {
-
 
         mockMvc.perform(post("/person")).andExpect(status().isOk());
     }*/
