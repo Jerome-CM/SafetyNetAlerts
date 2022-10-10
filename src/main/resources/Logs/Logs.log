@@ -1,0 +1,39 @@
+2022-10-10 11:54:57 ---  INFO --- [o.h.v.i.u.Version                       ] : HV000001: Hibernate Validator 6.0.17.Final
+2022-10-10 11:54:57 ---  INFO --- [c.s.a.AlertsApplication                 ] : Starting AlertsApplication using Java 18.0.1.1 on MacBook-de-jerome.local with PID 44937 (/Users/jeromebouteveille/git/SafetyNetAlerts/target/classes started by jeromebouteveille in /Users/jeromebouteveille/git/SafetyNetAlerts)
+2022-10-10 11:54:57 --- DEBUG --- [c.s.a.AlertsApplication                 ] : Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-10 11:54:57 ---  INFO --- [c.s.a.AlertsApplication                 ] : No active profile set, falling back to 1 default profile: "default"
+2022-10-10 11:54:58 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-10-10 11:54:58 ---  INFO --- [.s.d.r.c.RepositoryConfigurationDelegate] : Finished Spring Data repository scanning in 72 ms. Found 5 JPA repository interfaces.
+2022-10-10 11:54:59 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat initialized with port(s): 8080 (http)
+2022-10-10 11:54:59 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Initializing ProtocolHandler ["http-nio-8080"]
+2022-10-10 11:54:59 ---  INFO --- [o.a.c.c.StandardService                 ] : Starting service [Tomcat]
+2022-10-10 11:54:59 ---  INFO --- [o.a.c.c.StandardEngine                  ] : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-10-10 11:54:59 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring embedded WebApplicationContext
+2022-10-10 11:54:59 ---  INFO --- [w.s.c.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 2039 ms
+2022-10-10 11:54:59 ---  INFO --- [o.h.j.i.u.LogHelper                     ] : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-10-10 11:54:59 ---  INFO --- [o.h.Version                             ] : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-10-10 11:55:00 ---  INFO --- [o.h.a.c.Version                         ] : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-10-10 11:55:00 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Starting...
+2022-10-10 11:55:00 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Start completed.
+2022-10-10 11:55:00 ---  INFO --- [o.h.d.Dialect                           ] : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-10-10 11:55:02 ---  INFO --- [o.h.e.t.j.p.i.JtaPlatformInitiator      ] : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-10-10 11:55:02 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-10-10 11:55:03 ---  WARN --- [JpaBaseConfiguration$JpaWebConfiguration] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-10-10 11:55:03 ---  INFO --- [o.a.c.h.Http11NioProtocol               ] : Starting ProtocolHandler ["http-nio-8080"]
+2022-10-10 11:55:03 ---  INFO --- [o.s.b.w.e.t.TomcatWebServer             ] : Tomcat started on port(s): 8080 (http) with context path ''
+2022-10-10 11:55:03 ---  INFO --- [c.s.a.AlertsApplication                 ] : Started AlertsApplication in 6.617 seconds (JVM running for 9.018)
+2022-10-10 11:55:03 --- TRACE --- [c.s.a.AlertsApplication                 ] : /---- APPLICATION READY ----\
+2022-10-10 11:56:56 ---  INFO --- [o.a.c.c.C.[.[.[/]                       ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-10 11:56:56 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Initializing Servlet 'dispatcherServlet'
+2022-10-10 11:56:56 ---  INFO --- [o.s.w.s.DispatcherServlet               ] : Completed initialization in 48 ms
+2022-10-10 11:56:57 --- TRACE --- [c.s.a.s.i.MedicalsRecordServiceImpl     ] : --- Call : delete ---
+2022-10-10 11:56:57 ---  INFO --- [c.s.a.s.i.MedicalsRecordServiceImpl     ] : Data send by User : MedicalsRecordDTO(lastName=oyd, firstName=Jab, birthdate=null, medications=null, allergies=null)
+2022-10-10 11:56:57 --- ERROR --- [c.s.a.s.i.MedicalsRecordServiceImpl     ] : Nobody finded with this pair of first/last name : Jab oyd
+2022-10-10 11:57:47 --- TRACE --- [c.s.a.s.i.MedicalsRecordServiceImpl     ] : --- Call : delete ---
+2022-10-10 11:57:47 ---  INFO --- [c.s.a.s.i.MedicalsRecordServiceImpl     ] : Data send by User : MedicalsRecordDTO(lastName=Boyd, firstName=Jacob, birthdate=null, medications=null, allergies=null)
+2022-10-10 11:57:47 ---  INFO --- [c.s.a.s.i.MedicalsRecordServiceImpl     ] : ID person finded for delete this medicalsRecord : 3
+2022-10-10 11:57:47 ---  INFO --- [c.s.a.s.i.MedicalsRecordServiceImpl     ] : IdMedicalsRecords finded with this id Person : Optional.empty
+2022-10-10 11:57:47 --- ERROR --- [c.s.a.s.i.MedicalsRecordServiceImpl     ] : Impossible to delete this medicalsRecord : No value present
+2022-10-10 12:04:12 ---  INFO --- [j.LocalContainerEntityManagerFactoryBean] : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-10 12:04:12 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown initiated...
+2022-10-10 12:04:12 ---  INFO --- [c.z.h.HikariDataSource                  ] : HikariPool-1 - Shutdown completed.

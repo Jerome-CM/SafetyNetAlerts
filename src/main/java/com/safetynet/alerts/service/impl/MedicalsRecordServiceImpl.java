@@ -10,7 +10,8 @@ import com.safetynet.alerts.repository.MedicalsRecordRepository;
 import com.safetynet.alerts.repository.MedicamentRepository;
 import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.service.interf.MedicalsRecordService;
-import com.safetynet.alerts.utility.Utility;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ import java.util.Optional;
 
 @Service
 public class MedicalsRecordServiceImpl implements MedicalsRecordService {
+
+    private static final Logger logger = LogManager.getLogger(MedicalsRecordServiceImpl.class);
 
     @Autowired
     MedicalsRecordRepository medicalsRecordRepository;
@@ -39,29 +42,54 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
 
 
     public MedicalsRecordDTO save(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
+
+        logger.trace("--- Call : save ( a new Medical Record ) ---");
+        logger.info("Data send by User : {}", medicalsRecordDTO);
+
         MedicalsRecord medicalsRecord = new MedicalsRecord();
 
         List<Person> listPerson = personRepository.getPersons(medicalsRecordDTO.getFirstName(), medicalsRecordDTO.getLastName());
+
         Person person;
+
         if(!listPerson.isEmpty()){
             person = listPerson.get(0);
-
+            logger.info("This person is finded in BDD {}", person);
         } else {
+            logger.info("This person isn't finded in BDD");
             person = new Person();
             person.setFirstName(medicalsRecordDTO.getFirstName());
             person.setLastName(medicalsRecordDTO.getLastName());
-            person = personRepository.save(person);
+            logger.info("Save in BDD with first and lastname : {}, {}",medicalsRecordDTO.getFirstName(),medicalsRecordDTO.getLastName());
+            try{
+
+                person = personRepository.save(person);
+                logger.info("--- New User --- : {} ", person);
+            } catch (Exception e){
+                logger.error("Impossible to saved a new person in BDD : {}", e.getMessage());
+            }
         }
         person.setBirthdate(medicalsRecordDTO.getBirthdate());
-        medicalsRecord.setPerson(personRepository.save(person));
+        try{
+            medicalsRecord.setPerson(personRepository.save(person));
+            logger.info("The birthdate saved : {}", person);
+        } catch(Exception e){
+            logger.error("Impossible to update a birthdate into BDD : {}", e.getMessage());
+        }
 
         for (String medicament : medicalsRecordDTO.getMedications()){
             List<Medicament> listMedicaments = medicamentRepository.findByName(medicament);
 
-            Medicament medicamentObject;
+            Medicament medicamentObject = null;
 
             if(listMedicaments.isEmpty()){
-               medicamentObject = medicamentRepository.save(new Medicament(medicament));
+                logger.info("This medicament isn't into BDD : {}",medicament);
+                try{
+                    medicamentObject = medicamentRepository.save(new Medicament(medicament));
+                    logger.info("--- New medicament in BDD --- : {}", medicament);
+                } catch(Exception e){
+                    logger.error("Impossible to saved a new medicament in BDD : {}", e.getMessage());
+                }
             } else {
                 medicamentObject = listMedicaments.get(0);
             }
@@ -72,18 +100,28 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
         for (String allergie : medicalsRecordDTO.getAllergies()){
             List<Allergie> listAllergies = allergiesRepository.findByName(allergie);
 
-            Allergie allergieObject;
+            Allergie allergieObject = null;
 
             if(listAllergies.isEmpty()){
-                allergieObject = allergiesRepository.save(new Allergie(allergie));
+                logger.info("This allergie isn't into BDD : {}",allergie);
+                try{
+                    allergieObject = allergiesRepository.save(new Allergie(allergie));
+                    logger.info("--- New allergie in BDD --- : {}", allergie);
+                } catch(Exception e){
+                    logger.error("Impossible to saved a new medicament in BDD : {}", e.getMessage());
+                }
             } else {
                 allergieObject = listAllergies.get(0);
             }
 
             medicalsRecord.getAllergies().add(allergieObject);
         }
-
-        medicalsRecordRepository.save(medicalsRecord);
+        try{
+            medicalsRecordRepository.save(medicalsRecord);
+            logger.info("--- New medicalsRecord --- : {}",medicalsRecord);
+        } catch(Exception e){
+            logger.error("Impossible to saved a new medicalsRecord : {} {}", medicalsRecord, e.getMessage());
+        }
         return modelMapper.map(medicalsRecord, MedicalsRecordDTO.class);
     }
 
@@ -91,24 +129,34 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
 
     public MedicalsRecordDTO update(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
 
+        logger.trace("--- Call : update ---");
+        logger.info("Data send by User : {}", medicalsRecordDTO);
+
         List<Person> listPersons = personRepository.getPersons(medicalsRecordDTO.getFirstName(), medicalsRecordDTO.getLastName());
         MedicalsRecord medicalsRecord = new MedicalsRecord();
 
         if(!listPersons.isEmpty()){
             long idPerson = listPersons.get(0).getId();
+            logger.info("Id of the person who has the medicalsRecords {}",idPerson);
             Optional<Long> idMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(idPerson);
-
             if(idMedicalsRecord.isPresent()){
+                logger.info("Id of the medicalsRecords {}",idMedicalsRecord);
                 medicalsRecord.setId(idMedicalsRecord.get());
                 medicalsRecord.setPerson(listPersons.get(0));
 
                 for (String medicament : medicalsRecordDTO.getMedications()){
                     List<Medicament> listMedicaments = medicamentRepository.findByName(medicament);
 
-                    Medicament medicamentObject;
+                    Medicament medicamentObject = null;
 
                     if(listMedicaments.isEmpty()){
-                        medicamentObject = medicamentRepository.save(new Medicament(medicament));
+                        logger.info("{} isn't into BDD", medicament);
+                        try{
+                            medicamentObject = medicamentRepository.save(new Medicament(medicament));
+                            logger.info("--- New medicament in BDD --- : {}", medicamentObject.getName());
+                        } catch(Exception e){
+                            logger.error("Impossible to save a new medicament : {}", medicament);
+                        }
                     } else {
                         medicamentObject = listMedicaments.get(0);
                     }
@@ -119,31 +167,54 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
                 for (String allergie : medicalsRecordDTO.getAllergies()){
                     List<Allergie> listAllergies = allergiesRepository.findByName(allergie);
 
-                    Allergie allergieObject;
+                    Allergie allergieObject = null;
 
                     if(listAllergies.isEmpty()){
-                        allergieObject = allergiesRepository.save(new Allergie(allergie));
+                        logger.info("{} isn't into BDD", allergie);
+                        try{
+                            allergieObject = allergiesRepository.save(new Allergie(allergie));
+                            logger.info("--- New allergie in BDD --- : {}", allergieObject.getName());
+                        } catch(Exception e){
+                            logger.error("Impossible to save a new allergie : {}", allergie);
+                        }
                     } else {
                         allergieObject = listAllergies.get(0);
                     }
 
                     medicalsRecord.getAllergies().add(allergieObject);
                 }
-                medicalsRecordRepository.save(medicalsRecord);
+                try{
+                    medicalsRecordRepository.save(medicalsRecord);
+                    logger.info("--- New MedicalsRecord --- {}",medicalsRecord);
+                } catch(Exception e){
+                    logger.error("Impossible to save a new medicalsRecords : {}", e.getMessage());
+                }
             }
         }
+        logger.info("Values returned : {}", medicalsRecord);
         return modelMapper.map(medicalsRecord, MedicalsRecordDTO.class);
     }
 
     public String delete(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
+        logger.trace("--- Call : delete ---");
+        logger.info("Data send by User : {}", medicalsRecordDTO);
         List<Person> listPersons = personRepository.getPersons(medicalsRecordDTO.getFirstName(), medicalsRecordDTO.getLastName());
         if(!listPersons.isEmpty()){
            long idPerson = listPersons.get(0).getId();
+           logger.info("ID person found for delete this medicalsRecord : {}",idPerson);
            Optional<Long> idMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(idPerson);
-           medicalsRecordRepository.deleteById(idMedicalsRecord.get());
-            return "Succes";
+           logger.info("IdMedicalsRecords found with this id Person : {}",idMedicalsRecord);
+           try{
+               medicalsRecordRepository.deleteById(idMedicalsRecord.get());
+               logger.info("--- MedicalsRecord delete ---");
+               return "Delete success";
+           } catch(Exception e){
+               logger.error("Impossible to delete this medicalsRecord : {}", e.getMessage());
+               return "Delete error";
+           }
         } else {
-            return "Error";
+            logger.error("Nobody found with this pair of first/last name : {} {}", medicalsRecordDTO.getFirstName(), medicalsRecordDTO.getLastName());
+            return "Delete error";
         }
 
     }

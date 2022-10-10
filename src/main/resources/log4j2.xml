@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" monitorInterval="3">
+<Configuration status="WARN" monitorInterval="30">
 	<Properties>
 		<Property name="LOG_PATTERN">
 			%d{yyyy-MM-dd HH:mm:ss} --- %5p --- [%-40.40c{1.}] : %m%n%ex
 		</Property>
 	</Properties>
 	<Appenders>
+		<!-- Affichage console -->
 		<Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
 			<PatternLayout pattern="${LOG_PATTERN}"/>
 		</Console>
-		<!-- Rolling File Appender -->
-		<RollingFile name="FileAppender" fileName="src/main/resources/Logs/cast.log"
-					 filePattern="src/main/resources/Logs/cast-%d{yyyy-MM-dd}-%i.log">
+		<!-- Ecriture fichier -->
+		<RollingFile name="FileAppender" fileName="src/main/resources/Logs/Logs.log"
+					 filePattern="src/main/resources/Logs/Logs.log">
 			<PatternLayout>
 				<Pattern>${LOG_PATTERN}</Pattern>
 			</PatternLayout>

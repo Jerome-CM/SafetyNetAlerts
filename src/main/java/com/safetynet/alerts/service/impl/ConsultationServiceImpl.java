@@ -33,9 +33,13 @@ public class ConsultationServiceImpl implements ConsultationService {
     @Override
     public ListFirestationDTO firestationCoverage(String stationNumber){
 
-        List<Firestation> listFirestationAdresse = firestationRepository.findAddressByStation(stationNumber);
-        List<Person> listPersonCoverToThisStation = personRepository.getPersonWithAddress(listFirestationAdresse.get(0).getAddress());
+        logger.trace("--- Call : firestationCoverage ---");
+        logger.info("Data send by User : {}",stationNumber);
 
+        List<Firestation> listFirestationAdresse = firestationRepository.findAddressByStation(stationNumber);
+        logger.info("Address finded : {}",listFirestationAdresse.get(0).getAddress());
+        List<Person> listPersonCoverToThisStation = personRepository.getPersonWithAddress(listFirestationAdresse.get(0).getAddress());
+        logger.info("Person cover to this station : {}",listPersonCoverToThisStation.toString());
         ListFirestationDTO formatReturn = new ListFirestationDTO();
 
         for (Person person : listPersonCoverToThisStation) {
@@ -57,14 +61,18 @@ public class ConsultationServiceImpl implements ConsultationService {
                 formatReturn.setNbrEnfants(formatReturn.getNbrEnfants() + 1);
             }
         }
-
+        logger.info("Values returned : {}",formatReturn);
         return formatReturn;
     }
 
     @Override
     public ListFamillyDTO childsAndOtherMembersInHouse(String address){
+        logger.trace("--- Call : childsAndOtherMembersInHouse ---");
+        logger.info("Data send by User : {}", address);
 
         List<Person> listPersonToThisAddress = personRepository.getPersonWithAddress(address);
+
+        logger.info("Persons finded : {}",listPersonToThisAddress);
 
         List<PersonInfoDTO> listOtherDTO = new ArrayList<>();
         List<PersonInfoDTO> listChildsDTO = new ArrayList<>();
@@ -91,14 +99,19 @@ public class ConsultationServiceImpl implements ConsultationService {
 
         famille.setEnfants(listChildsDTO);
         famille.setAdultes(listOtherDTO);
-
+        logger.info("Values returned : {}", famille);
         return famille;
     }
 
     @Override
     public List<String> getPhone(String stationNumber){
 
+        logger.trace("--- Call : getPhone ---");
+        logger.info("Data send by User : {}", stationNumber);
+
         List<Firestation> listFirestation = firestationRepository.findAddressByStation(stationNumber);
+
+        logger.info("Firestations finded : {}",listFirestation);
 
         List<String> addressStation = new ArrayList<>();
 
@@ -120,17 +133,20 @@ public class ConsultationServiceImpl implements ConsultationService {
                 }
             }
         }
-
+        logger.info("Values returned : {}", listPhone);
         return listPhone;
     }
 
     @Override
     public FireDTO whoLivingAtThisAddress(String address) {
 
+        logger.trace("--- Call : whoLivingAtThisAddress ---");
+        logger.info("Data send by User : {}", address);
+
         FireDTO fireDTO = new FireDTO();
         List<Person> listPerson = personRepository.getPersonWithAddress(address);
 
-       // ArrayList<Object> listInfosPersons = new ArrayList<Object>();
+       logger.info("Persons finded : {}", listPerson);
 
         for (Person person : listPerson) {
 
@@ -179,7 +195,7 @@ public class ConsultationServiceImpl implements ConsultationService {
             fireDTO.setFirestation(firestation);
 
         }
-
+        logger.info("Values returned : {}", fireDTO);
         return fireDTO;
     }
 
@@ -187,13 +203,19 @@ public class ConsultationServiceImpl implements ConsultationService {
     @Override
     public List<FireDTO> stationsListPersons(List<String> stations){
 
+        logger.trace("--- Call : stationsListPersons ---");
+        logger.info("Data send by User : {}", stations);
+
         List<FireDTO> listFireDTO = new ArrayList<>();
         List<Firestation> firestations = firestationRepository.findByListStationNumber(stations);
+
+        logger.info("Firestations finded : {}", firestations);
 
         for(Firestation firestation : firestations) {
             listFireDTO.add(this.whoLivingAtThisAddress(firestation.getAddress()));
         }
 
+        logger.info("Values returned : {}", listFireDTO);
         return listFireDTO;
     }
 
@@ -201,9 +223,14 @@ public class ConsultationServiceImpl implements ConsultationService {
     @Override
     public List<PersonAndMedicalsRecordDTO> personInfo(String firstName, String lastName) {
 
+        logger.trace("--- Call : personInfo ---");
+        logger.info("Data send by User : firstname : {}, lastname : {}", firstName, lastName);
+
         List<PersonAndMedicalsRecordDTO> listReturn = new ArrayList<>();
 
         List<Person> listPersons = personRepository.getPersons(firstName, lastName);
+
+        logger.info("Persons finded : {}", listPersons);
 
         if (!listPersons.isEmpty()) {
 
@@ -240,14 +267,22 @@ public class ConsultationServiceImpl implements ConsultationService {
                 listReturn.add(habitant);
             }
         }
+        logger.info("Values returned : {}", listReturn);
         return listReturn;
     }
 
 
     @Override
     public ArrayList<String> getMailByCity(String city){
+
+        logger.trace("--- Call : getMailByCity ---");
+        logger.info("Data send by User : {}", city);
+
         ArrayList<String> listEmail = new ArrayList<String>();
         Iterable<Person> listPersons = personRepository.findByCity(city);
+
+        logger.info("Persons finded : {}",listPersons);
+
         for( Person person : listPersons){
             if(!person.getEmail().isEmpty()){
                 if (!listEmail.contains(person.getEmail())){
@@ -255,6 +290,7 @@ public class ConsultationServiceImpl implements ConsultationService {
                 }
             }
         }
+        logger.info("Values returned : {}", listEmail);
         return listEmail;
     }
 }

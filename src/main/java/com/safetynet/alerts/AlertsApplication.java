@@ -18,12 +18,7 @@ private static final Logger logger = LogManager.getLogger(AlertsApplication.clas
 	@Override
 	public void run(String... args) throws Exception {
 
-		logger.trace("/---- Application ready ----\\");
-
-
-
-
-
+		logger.trace("/---- APPLICATION READY ----\\");
 	}
 
 }

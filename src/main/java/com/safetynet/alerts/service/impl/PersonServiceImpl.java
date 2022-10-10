@@ -30,20 +30,37 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonDTO add(PersonDTO personDTO) {
+        logger.trace("--- Call : add ( save a new person ) ---");
+        logger.info("Data send by User : {}", personDTO);
+
         Person person = modelMapper.map(personDTO, Person.class);
+
         person = personRepository.save(person);
-        logger.info("--- New user --- ID : " + person.getId());
+        logger.info("--- New user --- ID : {}, Firstname : {}, Lastname : {}", person.getId(), person.getFirstName(), person.getLastName());
         return modelMapper.map(person, PersonDTO.class);
     }
 
     @Override
     public PersonDTO update(PersonDTO personDTO){
+
+        logger.trace("--- Call : update ---");
+        logger.info("Data send by User : {}", personDTO);
+
         Person person = modelMapper.map(personDTO, Person.class);
-        List<Person>personfind = personRepository.getPersons(person.getFirstName(), person.getLastName());
+        List<Person> personfind = personRepository.getPersons(person.getFirstName(), person.getLastName());
+
         if(!personfind.isEmpty()) {
+
+            logger.info("Olds infos Person : {}", personfind.get(0));
+
             person.setId(personfind.get(0).getId());
-            personRepository.save(person);
-            logger.info("--- User update --- ID : " + person.getId());
+            try{
+                personRepository.save(person);
+                logger.info("--- User update --- ");
+                logger.info("News infos Person : {}", person);
+            } catch(Exception e){
+                logger.error("Error : Can't update person : {}", e.getMessage());
+            }
         } else {
             logger.error("Firstname : {} Lastname : {} is not find in BDD for update", person.getFirstName(), person.getLastName());
         }
@@ -52,15 +69,26 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public String delete(PersonDTO personDTO){
+
+        logger.trace("--- Call : delete ---");
+        logger.info("Data send by User : {}", personDTO);
+
         Person person = modelMapper.map(personDTO, Person.class);
         List<Person> listPerson = personRepository.getPersons(person.getFirstName(), person.getLastName());
         if(!listPerson.isEmpty()){
-            personRepository.delete(listPerson.get(0));
-            logger.info("--- User delete ---");
-            return "Succes";
+            try{
+                personRepository.delete(listPerson.get(0));
+                logger.info("--- User delete ---");
+                return "User delete";
+            } catch(Exception e){
+                logger.error("Impossible to delete this user : {}", e.getMessage());
+                return "Error : user isn't deleted";
+            }
+
+        } else {
+            logger.error("Can't find this person with firstname : {} and lastname : {}", person.getFirstName(), person.getLastName());
+            return "Error : user isn't deleted";
         }
-        logger.error("Cannot delete this user; ID :" + listPerson.get(0).getId());
-        return "Error";
     }
 
 }
