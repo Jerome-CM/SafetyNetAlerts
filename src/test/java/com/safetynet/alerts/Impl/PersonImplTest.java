@@ -6,6 +6,7 @@ import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.service.interf.PersonService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,6 +14,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertFalse;
 
 @SpringBootTest
 public class PersonImplTest {
@@ -22,6 +24,9 @@ public class PersonImplTest {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    ModelMapper modelMapper;
 
     private PersonDTO personDTO;
 
@@ -33,6 +38,8 @@ public class PersonImplTest {
     @Test
     public void savePersonTest(){
 
+        List<Person> listTest = personRepository.getPersons("Jean-Pierre", "Coffe");
+
         personDTO.setLastName("Coffe");
         personDTO.setFirstName("Jean-Pierre");
         personDTO.setAddress("Rue de la soupe");
@@ -43,47 +50,73 @@ public class PersonImplTest {
 
         personService.add(personDTO);
 
-        List<Person> listTest = personRepository.getPersons("Jean-Pierre", "Coffe");
-        assertEquals("", 1, listTest.size());
-        assertEquals("", "jpc@manger.fr", listTest.get(0).getEmail());
+        List<Person> listTestNew = personRepository.getPersons("Jean-Pierre", "Coffe");
+        assertEquals("", listTest.size() + 1, listTestNew.size());
 
     }
 
-   /* @Test
+    @Test
+    public Person getPersonTest(){
+        this.savePersonTest();
+        List<Person> listTest = personRepository.getPersons("Jean-Pierre", "Coffe");
+
+        assertEquals("", "Jean-Pierre", listTest.get(0).getFirstName());
+        return listTest.isEmpty()?null:listTest.get(0);
+    }
+
+
+    @Test
     public void updatePersonTest(){
 
+        Person person = getPersonTest();
 
-        personDTO.setLastName("Coffe");
-        personDTO.setFirstName("Jean-Pierre");
-        personDTO.setAddress("Rue de la soupe");
-        personDTO.setCity("Lanneray");
-        personDTO.setZip("28000");
-        personDTO.setPhone("0687451291");
-        personDTO.setEmail("jpc@manger.fr");
-        Calendar birthdate = Calendar.getInstance();
-        birthdate.set(1938,9,29);
-        personDTO.setBirthdate(birthdate.getTime());
+        if(person!=null){
 
-        personService.update(personDTO);
+            PersonDTO personDTO = modelMapper.map(person, PersonDTO.class);
 
-        List<Person> listTest = personRepository.getPersons("Jean-Pierre", "Coffe");
-        assertEquals("", 1, listTest.size());
-        // assertEquals("", "1938-10-29", listTest.get(0).getBirthdate());
-        // TODO : les dates sont identiques mais ne passent pas
-        // TODO : le test ne passe pas en automatique
-    }*/
+            Calendar birthdate = Calendar.getInstance();
+            birthdate.set(1938,9,29);
+            personDTO.setBirthdate(birthdate.getTime());
+
+            personDTO = personService.update(personDTO);
+            long birthTime = personDTO.getBirthdate()==null?0:personDTO.getBirthdate().getTime();
+
+            assertEquals("", birthdate.getTime().getTime(), birthTime);
+
+        } else {
+            assertFalse("",true);
+        }
+    }
+
+    @Test
+    public void failUpdateExceptionTest(){
+
+        Person person = getPersonTest();
+
+        if(person!=null){
+            person.setFirstName("Pierre-Paul");
+            person.setLastName("Jacques");
+            PersonDTO personDTO = modelMapper.map(person, PersonDTO.class);
+
+            personService.update(personDTO);
+
+            List<Person> listTest = personRepository.getPersons("Pierre-Paul", "Jacques");
+            assertEquals("", 0, listTest.size());
+
+        }
+
+    }
 
     @Test
     public void deletePersonTest(){
+        this.savePersonTest();
 
         personDTO.setLastName("Coffe");
         personDTO.setFirstName("Jean-Pierre");
 
-        personService.delete(personDTO);
+        String messageReturn = personService.delete(personDTO);
 
-        List<Person> listExpectedEmpty = personRepository.getPersons("Jean-Pierre", "Coffe");
-        assertEquals("", 0, listExpectedEmpty.size());
+        assertEquals("", "User delete", messageReturn);
 
     }
-
 }

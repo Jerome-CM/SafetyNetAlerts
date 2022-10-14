@@ -63,7 +63,7 @@ public class FirestationServiceImpl implements FirestationService {
             logger.info("Firestation finded : {}",listStationByAddress);
 
             firestation.setId(listStationByAddress.get(0).getId());
-            logger.info("Olds infos firestation : {}", firestation);
+            logger.info("Olds infos firestation : {}", listStationByAddress.get(0));
 
             try {
                 firestation = firestationRepository.save(firestation);

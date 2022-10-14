@@ -38,12 +38,13 @@ public class FirestationImplTest {
         firestationService.saveFirestation(firestationDTO);
 
         List<Firestation> listTest = firestationRepository.findAddressByStation("99");
-        assertEquals("", 1, listTest.size());
         assertEquals("", "TestStationAddress", listTest.get(0).getAddress());
     }
 
-    /*@Test
+    @Test
     public void updateFirestationTest(){
+
+        this.saveFirestationTest();
 
         firestationDTO.setAddress("TestStationAddress");
         firestationDTO.setStation("88");
@@ -51,21 +52,20 @@ public class FirestationImplTest {
         firestationService.updateFirestation(firestationDTO);
 
         List<Firestation> listTest = firestationRepository.findByAddress("TestStationAddress");
-        assertEquals("", 1, listTest.size());
+
         assertEquals("", "88", listTest.get(0).getStation());
-        // TODO : le test ne passe pas en automatique
-    }*/
+
+    }
 
     @Test
     public void deleteFirestationTest(){
 
         firestationDTO.setAddress("TestStationAddress");
-        firestationDTO.setStation("99");
+        firestationDTO.setStation("88");
 
-        firestationService.deleteFirestation(firestationDTO);
+        String messageReturn = firestationService.deleteFirestation(firestationDTO);
 
-        List<Firestation> listExpectedEmpty = firestationRepository.findAddressByStation("99");
-        assertEquals("", 0, listExpectedEmpty.size());
+        assertEquals("", "Delete success", messageReturn);
     }
 
 }

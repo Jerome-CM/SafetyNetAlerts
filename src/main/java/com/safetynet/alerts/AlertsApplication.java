@@ -23,7 +23,7 @@ private static final Logger logger = LogManager.getLogger(AlertsApplication.clas
 
 		logger.trace("/---- APPLICATION READY ----\\");
 
-		file.getDataContent();
+		// file.getDataContent();
 	}
 
 }

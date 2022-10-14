@@ -16,7 +16,7 @@ import static java.lang.System.currentTimeMillis;
 
 public class Utility {
 
-    //
+    @Generated
     public static <T> T jsonDecode(String json, Class<T> tClass) {
         ObjectMapper mapper = new ObjectMapper();
         try {

@@ -10,7 +10,6 @@ import com.safetynet.alerts.model.Person;
 
 public interface PersonService {
 
-	public List<Person> getPersons();
 	public PersonDTO add(PersonDTO personDTO);
 
 	public PersonDTO update(PersonDTO personDTO);

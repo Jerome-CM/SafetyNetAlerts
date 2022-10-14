@@ -25,7 +25,7 @@ public class ReadDataFile {
     @Autowired
     ModelMapper modelMapper;
 
-    public void getDataContent() throws FileNotFoundException {
+    public String getDataContent() throws FileNotFoundException {
 
         JSONParser jsonP = new JSONParser();
         try {
@@ -64,15 +64,18 @@ public class ReadDataFile {
 
                 try{
                     personService.add(personDTO);
+                    return "File read, Data injected";
                 } catch(Exception e){
                     logger.error("{}", e.getMessage());
+                    return "Error : Data not injected in BDD";
                 }
 
             }
 
         } catch (IOException | ParseException e) {
-                throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
 
+        return "Error : Data not injected in BDD";
     }
 }

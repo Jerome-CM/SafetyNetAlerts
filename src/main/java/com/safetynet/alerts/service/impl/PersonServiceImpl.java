@@ -24,11 +24,6 @@ public class PersonServiceImpl implements PersonService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<Person> getPersons(){
-        return (List<Person>) personRepository.findAll();
-    }
-
-    @Override
     public PersonDTO add(PersonDTO personDTO) {
         logger.trace("--- Call : add ( save a new person ) ---");
         logger.info("Data send by User : {}", personDTO);
