@@ -1,6 +1,5 @@
 package com.safetynet.alerts;
 
-import com.safetynet.alerts.config.ReadDataFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
@@ -19,11 +18,8 @@ private static final Logger logger = LogManager.getLogger(AlertsApplication.clas
 	@Override
 	public void run(String... args) throws Exception {
 
-		ReadDataFile file = new ReadDataFile();
-
 		logger.trace("/---- APPLICATION READY ----\\");
 
-		// file.getDataContent();
 	}
 
 }

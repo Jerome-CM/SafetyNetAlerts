@@ -1,7 +1,5 @@
 package com.safetynet.alerts.config;
 
-import com.safetynet.alerts.dto.PersonDTO;
-import com.safetynet.alerts.service.impl.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +12,8 @@ public class DataController {
     ReadDataFile readDataFile;
 
     @PostMapping("/addData")
-    public String addData() throws FileNotFoundException {
-        return readDataFile.getDataContent();
+    public String addData(@RequestParam String fileName) throws FileNotFoundException {
+        return readDataFile.getDataContent(fileName);
     }
 
 }
