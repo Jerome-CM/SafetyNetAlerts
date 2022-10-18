@@ -86,16 +86,10 @@ public class ConsultationDTOHETest {
     @Test
     public void listFamillyDTOTest(){
 
-        ListFamillyDTO listFamille = new ListFamillyDTO();
+        ListFamillyDTO listFamille = getFamilleDTO();
 
-        List<PersonInfoDTO> enfants = listFamille.getEnfants();
-        List<PersonInfoDTO> adultes = listFamille.getAdultes();
-
-        enfants.add(getPersonInfoDTO());
-        adultes.add(getPersonInfoDTO());
-
-        assertEquals("", true, enfants.equals(adultes));
-        assertTrue("", enfants.hashCode() == adultes.hashCode());
+        assertEquals("", true, listFamille.getEnfants().equals(listFamille.getAdultes()));
+        assertTrue("", listFamille.getEnfants().hashCode() == listFamille.getAdultes().hashCode());
     }
 
 
@@ -107,7 +101,6 @@ public class ConsultationDTOHETest {
 
         assertEquals("", true, list1.equals(list2));
         assertTrue("", list1.hashCode() == list2.hashCode());
-
 
     }
 

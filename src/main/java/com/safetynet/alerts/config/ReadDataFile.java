@@ -4,6 +4,7 @@ import com.safetynet.alerts.dto.FirestationDTO;
 import com.safetynet.alerts.dto.MedicalsRecordDTO;
 import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.*;
+import com.safetynet.alerts.repository.TruncateDB;
 import com.safetynet.alerts.service.interf.FirestationService;
 import com.safetynet.alerts.service.interf.MedicalsRecordService;
 import com.safetynet.alerts.service.interf.PersonService;
@@ -33,10 +34,15 @@ public class ReadDataFile {
     @Autowired
     MedicalsRecordService medicalsRecordService;
 
+    /*@Autowired
+    TruncateDB truncateDB;*/
+
     @Autowired
     ModelMapper modelMapper;
 
     public String getDataContent(String fileName) throws FileNotFoundException {
+
+       // truncateDB.truncatePerson();
 
         JSONParser jsonP = new JSONParser();
         try {

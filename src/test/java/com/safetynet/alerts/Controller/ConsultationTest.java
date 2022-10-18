@@ -5,6 +5,7 @@ import com.safetynet.alerts.dto.ConsultationDTO.FireDTO;
 import com.safetynet.alerts.dto.ConsultationDTO.ListFamillyDTO;
 import com.safetynet.alerts.dto.ConsultationDTO.ListFirestationDTO;
 import com.safetynet.alerts.dto.ConsultationDTO.PersonAndMedicalsRecordDTO;
+import com.safetynet.alerts.model.Firestation;
 import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.repository.FirestationRepository;
 import com.safetynet.alerts.repository.PersonRepository;
@@ -14,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
@@ -43,29 +45,39 @@ public class ConsultationTest {
 
         ListFamillyDTO listPersonDTO = consultations.childsAndOtherMembersInHouse("1509 Culver St");
 
-        assertEquals("Childrens", 1, listPersonDTO.getEnfants().size());
-        assertEquals("Adults", 4, listPersonDTO.getAdultes().size());
+        assertEquals("Childrens", 2, listPersonDTO.getEnfants().size());
+        assertEquals("Adults", 3, listPersonDTO.getAdultes().size());
 
     }
 
     @Test
     public void getPhoneTest(){
 
-        List<String> listPhone = consultations.getPhonePersonByStation("3");
-        List<Person> listPersonInBDD = personRepository.getPersonWithAddress(firestationRepository.findAddressByStation("3").get(0).getAddress());
+        List<String> listPhone = consultations.getPhonePersonByStation("4");
+        List<Firestation> listFirestation = firestationRepository.findAddressByStation("4");
 
+        List<String> addressStation = new ArrayList<>();
 
-        List<String> nbrDifferentPhoneInBDDForThisAddress = new ArrayList<>();
-        for(Person person : listPersonInBDD){
-            if(!person.getPhone().isEmpty()){
-                if (!nbrDifferentPhoneInBDDForThisAddress.contains(person.getPhone())) {
-                    nbrDifferentPhoneInBDDForThisAddress.add(person.getPhone());
+        for(Firestation firestation : listFirestation){
+            addressStation.add(firestation.getAddress());
+        }
+
+        ArrayList<List<Person>> listPerson = new ArrayList<>();
+        for(String address : addressStation ){
+            listPerson.add(personRepository.getPersonWithAddress(address));
+        }
+
+        List<String> listPhoneControl = new ArrayList<>();
+
+        for (List<Person> personList : listPerson) {
+            for (Person person : personList) {
+                if (!listPhoneControl.contains(person.getPhone())) {
+                    listPhoneControl.add(person.getPhone());
                 }
-
             }
         }
 
-        assertEquals("", nbrDifferentPhoneInBDDForThisAddress.size(), listPhone.size());
+        assertEquals("", listPhoneControl.size(), listPhone.size());
 
     }
 
@@ -74,12 +86,12 @@ public class ConsultationTest {
 
         FireDTO listPerson = consultations.whoLivingAtThisAddress("1509 Culver St");
 
-        PersonAndMedicalsRecordDTO infoPerson = listPerson.getPerson().get(4);
+        PersonAndMedicalsRecordDTO infoPerson = listPerson.getPerson().get(1);
 
         assertEquals("Lastname", "Boyd", infoPerson.getLastName());
-        assertEquals("Age", 38, infoPerson.getAge());
-        assertEquals("Medications number", 2, infoPerson.getMedicalsRecord().getMedications().size());
-        assertEquals("Allergies number", 1, infoPerson.getMedicalsRecord().getAllergies().size());
+        assertEquals("Age", 33, infoPerson.getAge());
+        assertEquals("Medications number", 3, infoPerson.getMedicalsRecord().getMedications().size());
+        assertEquals("Allergies number", 0, infoPerson.getMedicalsRecord().getAllergies().size());
     }
 
     @Test
@@ -90,17 +102,29 @@ public class ConsultationTest {
         listStation.add("2");
 
         List<FireDTO> testList = consultations.stations(listStation);
-        FireDTO firstPersonAndStation = testList.get(0);
-        FireDTO secondPersonAndStation = testList.get(1);
 
-        assertEquals("", "1", firstPersonAndStation.getFirestation().getStation());
-        assertEquals("", "2", secondPersonAndStation.getFirestation().getStation());
-        assertEquals("", 1 , firstPersonAndStation.getPerson().size());
-        assertEquals("", 1 , secondPersonAndStation.getPerson().size());
-        assertEquals("", "Peter" , firstPersonAndStation.getPerson().get(0).getFirstName());
-        assertEquals("", "Duncan" , firstPersonAndStation.getPerson().get(0).getLastName());
-        assertEquals("", "Jonanathan" , secondPersonAndStation.getPerson().get(0).getFirstName());
-        assertEquals("", "Marrack" , secondPersonAndStation.getPerson().get(0).getLastName());
+        List<String> PersonInStationOne = new ArrayList<>();
+        List<String> PersonInStationTwo = new ArrayList<>();
+
+
+        if(!testList.isEmpty()){
+            for(FireDTO fire : testList){
+                if(Objects.equals(fire.getFirestation().getStation(), "1")){
+                    for (PersonAndMedicalsRecordDTO person : fire.getPerson()){
+                        PersonInStationOne.add(person.getFirstName());
+                    }
+                } else {
+                    for (PersonAndMedicalsRecordDTO person : fire.getPerson()){
+                        PersonInStationTwo.add(person.getFirstName());
+                    }
+                }
+
+            }
+        }
+
+        assertEquals("", 6, PersonInStationOne.size());
+        assertEquals("", 5, PersonInStationTwo.size());
+
     }
 
     @Test
@@ -109,8 +133,8 @@ public class ConsultationTest {
         PersonAndMedicalsRecordDTO infosPerson = consultations.personInfo("John", "Boyd").get(0);
 
         assertEquals("", "1509 Culver St", infosPerson.getAddress());
-        assertEquals("", "hydrapermazol:100mg", infosPerson.getMedicalsRecord().getMedications().get(0));
-        assertEquals("", "aznol:350mg", infosPerson.getMedicalsRecord().getMedications().get(1));
+        assertEquals("", "aznol:350mg", infosPerson.getMedicalsRecord().getMedications().get(0));
+        assertEquals("", "hydrapermazol:100mg", infosPerson.getMedicalsRecord().getMedications().get(1));
         assertEquals("", "nillacilan", infosPerson.getMedicalsRecord().getAllergies().get(0));
 
     }
@@ -120,7 +144,7 @@ public class ConsultationTest {
 
         ArrayList<String> listMail = consultations.getMailByCity("Culver");
 
-        assertEquals("", 6, listMail.size());
+        assertEquals("", 15, listMail.size());
 
     }
 

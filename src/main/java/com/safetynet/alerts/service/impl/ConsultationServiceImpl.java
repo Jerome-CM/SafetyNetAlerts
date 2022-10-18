@@ -30,6 +30,11 @@ public class ConsultationServiceImpl implements ConsultationService {
     @Autowired
     MedicalsRecordRepository medicalsRecordRepository;
 
+    /**
+     *
+     * @param stationNumber Number
+     * @return ListFirestationDTO
+     */
     @Override
     public ListFirestationDTO firestationCoverage(String stationNumber){
 
@@ -213,6 +218,7 @@ public class ConsultationServiceImpl implements ConsultationService {
 
         for(Firestation firestation : firestations) {
             listFireDTO.add(this.whoLivingAtThisAddress(firestation.getAddress()));
+            System.out.println("ADD TO LIST :" + this.whoLivingAtThisAddress(firestation.getAddress()));
         }
 
         logger.info("Values returned : {}", listFireDTO);
