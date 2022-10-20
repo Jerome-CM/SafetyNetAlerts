@@ -18,10 +18,10 @@ public class PersonServiceImpl implements PersonService {
     private static final Logger logger = LogManager.getLogger(PersonServiceImpl.class);
 
     @Autowired
-    private PersonRepository personRepository;
+    PersonRepository personRepository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    ModelMapper modelMapper;
 
     @Override
     public PersonDTO add(PersonDTO personDTO) {
@@ -62,6 +62,11 @@ public class PersonServiceImpl implements PersonService {
         return modelMapper.map(person, PersonDTO.class);
     }
 
+    /**
+     *
+     * @param personDTO
+     * @return Reply message
+     */
     @Override
     public String delete(PersonDTO personDTO){
 

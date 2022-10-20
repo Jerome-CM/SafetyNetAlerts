@@ -26,7 +26,11 @@ public class Utility {
         }
     }
 
-
+    /**
+     *
+     * @param o Objet ( List, ArrayList, Map, Object, ... )
+     * @return A print of JsonFormat
+     */
     public static String jsonEncode(Object o) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
@@ -37,8 +41,12 @@ public class Utility {
         }
     }
 
+    /**
+     *
+     * @param date Date of Birth
+     * @return the Age
+     */
     public static int personAge(Date date){
-
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -72,6 +80,11 @@ public class Utility {
         return age;
     }
 
+    /**
+     *
+     * @param birthdate
+     * @return Boolean - true if is adult
+     */
     public static boolean isAdult(Date birthdate) {
 
         Calendar dateAdult = Calendar.getInstance();

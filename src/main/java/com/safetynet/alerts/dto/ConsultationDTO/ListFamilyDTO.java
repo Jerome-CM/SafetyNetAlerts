@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class ListFamillyDTO {
+public class ListFamilyDTO {
 
     private List<PersonInfoDTO> enfants = new ArrayList<>();
     private List<PersonInfoDTO> adultes = new ArrayList<>();

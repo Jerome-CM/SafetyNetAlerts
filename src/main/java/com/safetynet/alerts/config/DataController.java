@@ -11,6 +11,12 @@ public class DataController {
     @Autowired
     ReadDataFile readDataFile;
 
+    /**
+     *
+     * @param fileName name of the datafile in src/main/resources
+     * @return Status message
+     * @throws FileNotFoundException
+     */
     @PostMapping("/addData")
     public String addData(@RequestParam String fileName) throws FileNotFoundException {
         return readDataFile.getDataContent(fileName);

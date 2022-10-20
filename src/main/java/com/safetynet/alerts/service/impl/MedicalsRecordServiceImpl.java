@@ -5,7 +5,7 @@ import com.safetynet.alerts.model.Allergie;
 import com.safetynet.alerts.model.MedicalsRecord;
 import com.safetynet.alerts.model.Medicament;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.repository.AllergiesRepository;
+import com.safetynet.alerts.repository.AllergieRepository;
 import com.safetynet.alerts.repository.MedicalsRecordRepository;
 import com.safetynet.alerts.repository.MedicamentRepository;
 import com.safetynet.alerts.repository.PersonRepository;
@@ -35,12 +35,17 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
     MedicamentRepository medicamentRepository;
 
     @Autowired
-    AllergiesRepository allergiesRepository;
+    AllergieRepository allergieRepository;
 
     @Autowired
     ModelMapper modelMapper;
 
-
+    /**
+     *
+     * @param medicalsRecordDTO
+     * @return {@link MedicalsRecordDTO}
+     */
+    @Override
     public MedicalsRecordDTO save(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
 
         logger.trace("--- Call : save ( a new Medical Record ) ---");
@@ -48,10 +53,12 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
 
         MedicalsRecord medicalsRecord = new MedicalsRecord();
 
+
         List<Person> listPerson = personRepository.getPersons(medicalsRecordDTO.getFirstName(), medicalsRecordDTO.getLastName());
 
         Person person;
 
+        // This person exist in BDD, else, we create this person and we added in BDD
         if(!listPerson.isEmpty()){
             person = listPerson.get(0);
             logger.info("This person is finded in BDD {}", person);
@@ -62,14 +69,16 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
             person.setLastName(medicalsRecordDTO.getLastName());
             logger.info("Save in BDD with first and lastname : {}, {}",medicalsRecordDTO.getFirstName(),medicalsRecordDTO.getLastName());
             try{
-
                 person = personRepository.save(person);
                 logger.info("--- New User --- : {} ", person);
             } catch (Exception e){
                 logger.error("Impossible to saved a new person in BDD : {}", e.getMessage());
             }
         }
+
+        // Add your date of birth
         person.setBirthdate(medicalsRecordDTO.getBirthdate());
+
         try{
             medicalsRecord.setPerson(personRepository.save(person));
             logger.info("The birthdate saved : {}", person);
@@ -77,6 +86,7 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
             logger.error("Impossible to update a birthdate into BDD : {}", e.getMessage());
         }
 
+        // For the medications indicated in the DTO, for each medicament, we check it if exist in BDD, else, we added him
         for (String medicament : medicalsRecordDTO.getMedications()){
             List<Medicament> listMedicaments = medicamentRepository.findByName(medicament);
 
@@ -97,15 +107,16 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
             medicalsRecord.getMedicaments().add(medicamentObject);
         }
 
+        // Same for allergie
         for (String allergie : medicalsRecordDTO.getAllergies()){
-            List<Allergie> listAllergies = allergiesRepository.findByName(allergie);
+            List<Allergie> listAllergies = allergieRepository.findByName(allergie);
 
             Allergie allergieObject = null;
 
             if(listAllergies.isEmpty()){
                 logger.info("This allergie isn't into BDD : {}",allergie);
                 try{
-                    allergieObject = allergiesRepository.save(new Allergie(allergie));
+                    allergieObject = allergieRepository.save(new Allergie(allergie));
                     logger.info("--- New allergie in BDD --- : {}", allergie);
                 } catch(Exception e){
                     logger.error("Impossible to saved a new medicament in BDD : {}", e.getMessage());
@@ -125,8 +136,12 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
         return modelMapper.map(medicalsRecord, MedicalsRecordDTO.class);
     }
 
-
-
+    /**
+     *
+     * @param medicalsRecordDTO
+     * @return {@link MedicalsRecordDTO}
+     */
+    @Override
     public MedicalsRecordDTO update(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
 
         logger.trace("--- Call : update ---");
@@ -135,6 +150,7 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
         List<Person> listPersons = personRepository.getPersons(medicalsRecordDTO.getFirstName(), medicalsRecordDTO.getLastName());
         MedicalsRecord medicalsRecord = new MedicalsRecord();
 
+        // With the object Person, we found his Person.Id, and his MedicalsRecord.Id for the update
         if(!listPersons.isEmpty()){
             long idPerson = listPersons.get(0).getId();
             logger.info("Id of the person who has the medicalsRecords {}",idPerson);
@@ -144,6 +160,7 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
                 medicalsRecord.setId(idMedicalsRecord.get());
                 medicalsRecord.setPerson(listPersons.get(0));
 
+                // For the medications indicated in the DTO, for each medicament, we check it if exist in BDD, else, we added him
                 for (String medicament : medicalsRecordDTO.getMedications()){
                     List<Medicament> listMedicaments = medicamentRepository.findByName(medicament);
 
@@ -164,15 +181,16 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
                     medicalsRecord.getMedicaments().add(medicamentObject);
                 }
 
+                // Same for allergie
                 for (String allergie : medicalsRecordDTO.getAllergies()){
-                    List<Allergie> listAllergies = allergiesRepository.findByName(allergie);
+                    List<Allergie> listAllergies = allergieRepository.findByName(allergie);
 
                     Allergie allergieObject = null;
 
                     if(listAllergies.isEmpty()){
                         logger.info("{} isn't into BDD", allergie);
                         try{
-                            allergieObject = allergiesRepository.save(new Allergie(allergie));
+                            allergieObject = allergieRepository.save(new Allergie(allergie));
                             logger.info("--- New allergie in BDD --- : {}", allergieObject.getName());
                         } catch(Exception e){
                             logger.error("Impossible to save a new allergie : {}", allergie);
@@ -195,10 +213,17 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
         return modelMapper.map(medicalsRecord, MedicalsRecordDTO.class);
     }
 
+    /**
+     *
+     * @param medicalsRecordDTO
+     * @return Reply message
+     */
+    @Override
     public String delete(@RequestBody MedicalsRecordDTO medicalsRecordDTO){
         logger.trace("--- Call : delete ---");
         logger.info("Data send by User : {}", medicalsRecordDTO);
         List<Person> listPersons = personRepository.getPersons(medicalsRecordDTO.getFirstName(), medicalsRecordDTO.getLastName());
+
         if(!listPersons.isEmpty()){
            long idPerson = listPersons.get(0).getId();
            logger.info("ID person found for delete this medicalsRecord : {}",idPerson);

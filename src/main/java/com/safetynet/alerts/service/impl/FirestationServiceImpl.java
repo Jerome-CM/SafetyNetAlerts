@@ -3,22 +3,15 @@ package com.safetynet.alerts.service.impl;
 
 import com.safetynet.alerts.dto.FirestationDTO;
 import com.safetynet.alerts.model.Firestation;
-import com.safetynet.alerts.model.Person;
 import com.safetynet.alerts.repository.FirestationRepository;
-import com.safetynet.alerts.repository.PersonRepository;
 import com.safetynet.alerts.service.interf.FirestationService;
-import com.safetynet.alerts.utility.Utility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class FirestationServiceImpl implements FirestationService {
@@ -31,6 +24,11 @@ public class FirestationServiceImpl implements FirestationService {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     *
+     * @param firestationDTO
+     * @return {@link FirestationDTO}
+     */
     @Override
     public FirestationDTO saveFirestation(FirestationDTO firestationDTO){
 
@@ -49,6 +47,11 @@ public class FirestationServiceImpl implements FirestationService {
         return modelMapper.map(firestation, FirestationDTO.class);
     }
 
+    /**
+     *
+     * @param firestationDTO
+     * @return {@link FirestationDTO}
+     */
     @Override
     public FirestationDTO updateFirestation(FirestationDTO firestationDTO){
 
@@ -80,6 +83,11 @@ public class FirestationServiceImpl implements FirestationService {
         return modelMapper.map(firestation, FirestationDTO.class);
     }
 
+    /**
+     *
+     * @param firestationDTO
+     * @return Reply message
+     */
     @Override
     public String deleteFirestation(FirestationDTO firestationDTO){
 

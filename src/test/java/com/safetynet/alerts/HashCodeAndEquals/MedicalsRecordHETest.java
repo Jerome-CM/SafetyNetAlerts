@@ -1,13 +1,11 @@
 package com.safetynet.alerts.HashCodeAndEquals;
 
 import com.safetynet.alerts.dto.MedicalsRecordDTO;
-import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.Allergie;
 import com.safetynet.alerts.model.MedicalsRecord;
 import com.safetynet.alerts.model.Medicament;
 import com.safetynet.alerts.model.Person;
-import com.safetynet.alerts.repository.AllergiesRepository;
-import com.safetynet.alerts.repository.MedicalsRecordRepository;
+import com.safetynet.alerts.repository.AllergieRepository;
 import com.safetynet.alerts.repository.MedicamentRepository;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -31,7 +29,7 @@ public class MedicalsRecordHETest {
     MedicamentRepository medicamentRepository;
 
     @Autowired
-    AllergiesRepository allergiesRepository;
+    AllergieRepository allergieRepository;
 
     public MedicalsRecord getMR(){
         MedicalsRecord medicalsRecord  = new MedicalsRecord();
@@ -48,7 +46,7 @@ public class MedicalsRecordHETest {
 
         medicalsRecord.setPerson(person);
         List<Medicament> medicaments = (List<Medicament>) medicamentRepository.findAll();
-        List<Allergie> allergies = (List<Allergie>) allergiesRepository.findAll();
+        List<Allergie> allergies = (List<Allergie>) allergieRepository.findAll();
         medicalsRecord.setMedicaments(medicaments);
         medicalsRecord.setAllergies(allergies);
 

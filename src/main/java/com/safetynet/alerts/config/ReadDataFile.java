@@ -40,14 +40,22 @@ public class ReadDataFile {
     @Autowired
     ModelMapper modelMapper;
 
+    /**
+     *
+     * @param fileName fileName name of the datafile with JSON extension in src/main/resources
+     * @return status message
+     * @throws FileNotFoundException
+     */
     public String getDataContent(String fileName) throws FileNotFoundException {
 
-       // truncateDB.truncatePerson();
+        //truncateDB.truncatePerson();
 
         JSONParser jsonP = new JSONParser();
         try {
+            // Try to get a Json Data
             JSONObject jsonO = (JSONObject)jsonP.parse(new FileReader("src/main/resources/" + fileName));
 
+            // Explode different keys
             JSONArray persons = (JSONArray) jsonO.get("persons");
             JSONArray firestations = (JSONArray) jsonO.get("firestations");
             JSONArray medicalsRecords = (JSONArray) jsonO.get("medicalrecords");
@@ -59,6 +67,7 @@ public class ReadDataFile {
                 JSONObject data = (JSONObject) persons.get(p);
                 JSONObject dataMR = (JSONObject) medicalsRecords.get(p);
 
+                // Set Person with Json information
                 person.setFirstName((String)data.get("firstName"));
                 person.setLastName((String)data.get("lastName"));
                 person.setAddress((String)data.get("address"));
@@ -67,7 +76,7 @@ public class ReadDataFile {
                 person.setPhone((String)data.get("phone"));
                 person.setEmail((String)data.get("email"));
 
-                // Refactorisation de la date Json: String MM/dd/yyyy vers Date dd/MM/yyyy
+                // Refactorize Date Json: String MM/dd/yyyy to Date dd/MM/yyyy
                 String input = (String)dataMR.get("birthdate");
                 String[] array = input.split("/");
                 int day = Integer.parseInt(array[1]);
@@ -78,8 +87,7 @@ public class ReadDataFile {
 
                 person.setBirthdate(birthdateRefactor.getTime());
 
-                //MedicalsRecors Set
-
+                //Set MedicalsRecord with Json information
                 medicalsRecordDTO.setFirstName((String)dataMR.get("firstName"));
                 medicalsRecordDTO.setLastName((String)dataMR.get("lastName"));
                 medicalsRecordDTO.setBirthdate(person.getBirthdate());
@@ -88,6 +96,7 @@ public class ReadDataFile {
 
                 PersonDTO personDTO = modelMapper.map(person, PersonDTO.class);
 
+                // Save data in BDD
                 try{
                     personService.add(personDTO);
                     medicalsRecordService.save(medicalsRecordDTO);
@@ -95,9 +104,9 @@ public class ReadDataFile {
                     logger.error("{}", e.getMessage());
                     return "Error : Data not injected in BDD";
                 }
-
             }
 
+            // Same for Firestation
             for(int f = 0 ; f < firestations.size() ; f++){
                 Firestation firestation = new Firestation();
                 JSONObject data = (JSONObject) firestations.get(f);
@@ -117,23 +126,9 @@ public class ReadDataFile {
                 }
             }
 
-            /*for(int m = 0 ; m < firestations.size() ; m++) {
-
-                MedicalsRecord medicalsRecord = new MedicalsRecord();
-                JSONObject dataP = (JSONObject) persons.get(m);
-                JSONObject dataMR = (JSONObject) medicalsRecords.get(m);
-
-
-
-
-            }*/
-
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
-
-
-
         return "File read, all data injected";
     }
 }

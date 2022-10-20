@@ -11,8 +11,6 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 
 	public Iterable<Person> findByCity(String city);
 
-	public Iterable<Person> findByLastName(String lastName);
-
 	@Query(value="SELECT p FROM Person p WHERE p.firstName = ?1 AND p.lastName = ?2")
 	public List<Person> getPersons(String firstName, String lastName);
 

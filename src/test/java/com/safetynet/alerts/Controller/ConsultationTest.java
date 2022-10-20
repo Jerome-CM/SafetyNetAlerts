@@ -2,7 +2,7 @@ package com.safetynet.alerts.Controller;
 
 import com.safetynet.alerts.controller.Consultations;
 import com.safetynet.alerts.dto.ConsultationDTO.FireDTO;
-import com.safetynet.alerts.dto.ConsultationDTO.ListFamillyDTO;
+import com.safetynet.alerts.dto.ConsultationDTO.ListFamilyDTO;
 import com.safetynet.alerts.dto.ConsultationDTO.ListFirestationDTO;
 import com.safetynet.alerts.dto.ConsultationDTO.PersonAndMedicalsRecordDTO;
 import com.safetynet.alerts.model.Firestation;
@@ -43,7 +43,7 @@ public class ConsultationTest {
     @Test
     public void childsAndOtherMembersInHouseTest(){
 
-        ListFamillyDTO listPersonDTO = consultations.childsAndOtherMembersInHouse("1509 Culver St");
+        ListFamilyDTO listPersonDTO = consultations.childsAndOtherMembersInHouse("1509 Culver St");
 
         assertEquals("Childrens", 2, listPersonDTO.getEnfants().size());
         assertEquals("Adults", 3, listPersonDTO.getAdultes().size());
@@ -142,7 +142,7 @@ public class ConsultationTest {
     @Test
     public void getMailTest(){
 
-        ArrayList<String> listMail = consultations.getMailByCity("Culver");
+        List<String> listMail = consultations.getMailByCity("Culver");
 
         assertEquals("", 15, listMail.size());
 

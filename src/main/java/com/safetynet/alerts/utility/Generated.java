@@ -9,6 +9,9 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ *  The annotation for JaCoCo ignore a part of the code
+ */
 @Documented
 @Retention(RUNTIME)
 @Target({TYPE, METHOD})

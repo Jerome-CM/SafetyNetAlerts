@@ -32,8 +32,8 @@ public class ConsultationServiceImpl implements ConsultationService {
 
     /**
      *
-     * @param stationNumber Number
-     * @return ListFirestationDTO
+     * @param stationNumber The number of the station
+     * @return {@link ListFirestationDTO} - List of Person, number childrens and adults cover by this station
      */
     @Override
     public ListFirestationDTO firestationCoverage(String stationNumber){
@@ -47,6 +47,7 @@ public class ConsultationServiceImpl implements ConsultationService {
         logger.info("Person cover to this station : {}",listPersonCoverToThisStation.toString());
         ListFirestationDTO formatReturn = new ListFirestationDTO();
 
+        // Set PersonInfoDTO
         for (Person person : listPersonCoverToThisStation) {
             PersonInfoDTO habitant = new PersonInfoDTO();
 
@@ -57,8 +58,8 @@ public class ConsultationServiceImpl implements ConsultationService {
             habitant.setAge(Utility.personAge(person.getBirthdate()));
             habitant.setMail(person.getEmail());
 
+            // getHabitants is an ArrayList
             formatReturn.getHabitants().add(habitant);
-
 
             if (Utility.isAdult(person.getBirthdate())) {
                 formatReturn.setNbrAdults(formatReturn.getNbrAdults() + 1);
@@ -70,8 +71,13 @@ public class ConsultationServiceImpl implements ConsultationService {
         return formatReturn;
     }
 
+    /**
+     *
+     * @param address The address of the family
+     * @return {@link ListFamilyDTO} - A List of childrens and a list of adults in the house
+     */
     @Override
-    public ListFamillyDTO childsAndOtherMembersInHouse(String address){
+    public ListFamilyDTO childsAndOtherMembersInHouse(String address){
         logger.trace("--- Call : childsAndOtherMembersInHouse ---");
         logger.info("Data send by User : {}", address);
 
@@ -84,6 +90,7 @@ public class ConsultationServiceImpl implements ConsultationService {
 
         for (Person person : listPersonToThisAddress) {
 
+            // Set PersonInfoDTO for List
             PersonInfoDTO habitant = new PersonInfoDTO();
 
             habitant.setFirstName(person.getFirstName());
@@ -93,6 +100,7 @@ public class ConsultationServiceImpl implements ConsultationService {
             habitant.setAge(Utility.personAge(person.getBirthdate()));
             habitant.setMail(person.getEmail());
 
+            /// Add a habitant to the correct list based on age
             if (Utility.isAdult(person.getBirthdate())) {
                 listOtherDTO.add(habitant);
             } else {
@@ -100,14 +108,20 @@ public class ConsultationServiceImpl implements ConsultationService {
             }
         }
 
-        ListFamillyDTO famille = new ListFamillyDTO();
+        ListFamilyDTO famille = new ListFamilyDTO();
 
         famille.setEnfants(listChildsDTO);
         famille.setAdultes(listOtherDTO);
         logger.info("Values returned : {}", famille);
+
         return famille;
     }
 
+    /**
+     *
+     * @param stationNumber The number of the station
+     * @return A list with unique phone numbers
+     */
     @Override
     public List<String> getPhone(String stationNumber){
 
@@ -125,12 +139,14 @@ public class ConsultationServiceImpl implements ConsultationService {
         }
 
         ArrayList<List<Person>> listPerson = new ArrayList<>();
+        // Add for each address, the person in listPerson
         for(String address : addressStation ){
            listPerson.add(personRepository.getPersonWithAddress(address));
         }
 
         List<String> listPhone = new ArrayList<>();
 
+        // If the phone is unknow in the list, add this
         for (List<Person> personList : listPerson) {
             for (Person person : personList) {
                 if (!listPhone.contains(person.getPhone())) {
@@ -142,6 +158,11 @@ public class ConsultationServiceImpl implements ConsultationService {
         return listPhone;
     }
 
+    /**
+     *
+     * @param address
+     * @return {@link FireDTO} - A list of Person and their medicalRecord and the end, their fire station
+     */
     @Override
     public FireDTO whoLivingAtThisAddress(String address) {
 
@@ -164,6 +185,7 @@ public class ConsultationServiceImpl implements ConsultationService {
             personDTO.setAge(Utility.personAge(person.getBirthdate()));
             personDTO.setMail(person.getEmail());
 
+            // Recovery of the medicalsRecord Id
             Optional<Long> haveMedicalsRecord;
             haveMedicalsRecord = medicalsRecordRepository.findMedicalsRecordsIdByIdPerson(person.getId());
 
@@ -189,6 +211,7 @@ public class ConsultationServiceImpl implements ConsultationService {
 
             fireDTO.getPerson().add(personDTO);
 
+            // For each address, add the firestation
             List<Firestation> listStationByAddress = firestationRepository.findByAddress(address);
             FirestationDTO firestation = new FirestationDTO();
 
@@ -204,7 +227,11 @@ public class ConsultationServiceImpl implements ConsultationService {
         return fireDTO;
     }
 
-
+    /**
+     *
+     * @param stations A list of stationNumber
+     * @return {@link FireDTO} - A list of Person and their medicalRecord and the end, their fire station
+     */
     @Override
     public List<FireDTO> stationsListPersons(List<String> stations){
 
@@ -225,7 +252,12 @@ public class ConsultationServiceImpl implements ConsultationService {
         return listFireDTO;
     }
 
-
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @return {@link PersonAndMedicalsRecordDTO} - A list of Person and their medicalRecord
+     */
     @Override
     public List<PersonAndMedicalsRecordDTO> personInfo(String firstName, String lastName) {
 
@@ -240,6 +272,7 @@ public class ConsultationServiceImpl implements ConsultationService {
 
         if (!listPersons.isEmpty()) {
 
+            // For each person with the same first and last name
             for (Person person : listPersons) {
 
                 PersonAndMedicalsRecordDTO habitant = new PersonAndMedicalsRecordDTO();
@@ -277,18 +310,23 @@ public class ConsultationServiceImpl implements ConsultationService {
         return listReturn;
     }
 
-
+    /**
+     *
+     * @param city - The name of the city
+     * @return A list with unique emails
+     */
     @Override
-    public ArrayList<String> getMailByCity(String city){
+    public List<String> getMailByCity(String city){
 
         logger.trace("--- Call : getMailByCity ---");
         logger.info("Data send by User : {}", city);
 
-        ArrayList<String> listEmail = new ArrayList<String>();
+        List<String> listEmail = new ArrayList<String>();
         Iterable<Person> listPersons = personRepository.findByCity(city);
 
         logger.info("Persons finded : {}",listPersons);
 
+        // Add to list if email not already in listEmail
         for( Person person : listPersons){
             if(!person.getEmail().isEmpty()){
                 if (!listEmail.contains(person.getEmail())){

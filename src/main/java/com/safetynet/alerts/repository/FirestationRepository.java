@@ -19,5 +19,5 @@ public interface FirestationRepository extends CrudRepository <Firestation, Long
     public List<Firestation> findByStation(String number);
 
     @Query("SELECT f FROM Firestation f WHERE f.station IN ?1")
-    List<Firestation> findByListStationNumber(Collection<String> stations);
+    public List<Firestation> findByListStationNumber(Collection<String> stations);
 }

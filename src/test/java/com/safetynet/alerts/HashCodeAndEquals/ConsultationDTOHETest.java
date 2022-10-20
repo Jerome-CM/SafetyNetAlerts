@@ -1,7 +1,6 @@
 package com.safetynet.alerts.HashCodeAndEquals;
 
 import com.safetynet.alerts.dto.ConsultationDTO.*;
-import com.safetynet.alerts.model.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -59,9 +58,9 @@ public class ConsultationDTOHETest {
 
     }
 
-    public ListFamillyDTO getFamilleDTO(){
+    public ListFamilyDTO getFamilleDTO(){
 
-        ListFamillyDTO listFamille = new ListFamillyDTO();
+        ListFamilyDTO listFamille = new ListFamilyDTO();
 
         List<PersonInfoDTO> enfants = new ArrayList<>();
         List<PersonInfoDTO> adultes = new ArrayList<>();
@@ -86,7 +85,7 @@ public class ConsultationDTOHETest {
     @Test
     public void listFamillyDTOTest(){
 
-        ListFamillyDTO listFamille = getFamilleDTO();
+        ListFamilyDTO listFamille = getFamilleDTO();
 
         assertEquals("", true, listFamille.getEnfants().equals(listFamille.getAdultes()));
         assertTrue("", listFamille.getEnfants().hashCode() == listFamille.getAdultes().hashCode());
