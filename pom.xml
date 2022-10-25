@@ -173,7 +173,6 @@
                 <configuration>
                     <excludes>
                         <exclude>**/config/*</exclude>
-                        <exclude>**/utility/Utility/jsonDecode</exclude>
                     </excludes>
                 </configuration>
                 <version>0.8.8</version>

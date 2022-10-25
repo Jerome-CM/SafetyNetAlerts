@@ -15,5 +15,7 @@ public interface PersonService {
 	public PersonDTO update(PersonDTO personDTO);
 
 	public String delete(PersonDTO personDTO);
+
+	public void truncatePerson();
 }
  

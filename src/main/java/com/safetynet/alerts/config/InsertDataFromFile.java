@@ -4,11 +4,9 @@ import com.safetynet.alerts.dto.FirestationDTO;
 import com.safetynet.alerts.dto.MedicalsRecordDTO;
 import com.safetynet.alerts.dto.PersonDTO;
 import com.safetynet.alerts.model.*;
-import com.safetynet.alerts.repository.TruncateDB;
 import com.safetynet.alerts.service.interf.FirestationService;
 import com.safetynet.alerts.service.interf.MedicalsRecordService;
 import com.safetynet.alerts.service.interf.PersonService;
-import com.safetynet.alerts.utility.Utility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -22,8 +20,8 @@ import java.io.*;
 import java.util.*;
 
 @Service
-public class ReadDataFile {
-    private static final Logger logger = LogManager.getLogger(ReadDataFile.class);
+public class InsertDataFromFile {
+    private static final Logger logger = LogManager.getLogger(InsertDataFromFile.class);
 
     @Autowired
     PersonService personService;
@@ -34,8 +32,8 @@ public class ReadDataFile {
     @Autowired
     MedicalsRecordService medicalsRecordService;
 
-    /*@Autowired
-    TruncateDB truncateDB;*/
+    @Autowired
+    TruncateTable truncateTable;
 
     @Autowired
     ModelMapper modelMapper;
@@ -48,7 +46,12 @@ public class ReadDataFile {
      */
     public String getDataContent(String fileName) throws FileNotFoundException {
 
-        //truncateDB.truncatePerson();
+        try{
+            truncateTable.truncateAllTables();
+            logger.info("--- DATABASE TRUNCATED ---");
+        } catch(Exception e){
+            logger.error("Impossible to truncate the database, {}", e.getMessage());
+        }
 
         JSONParser jsonP = new JSONParser();
         try {

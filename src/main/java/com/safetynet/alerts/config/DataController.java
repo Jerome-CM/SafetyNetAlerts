@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 public class DataController {
 
     @Autowired
-    ReadDataFile readDataFile;
+    InsertDataFromFile insertDataFromFIle;
 
     /**
      *
@@ -19,7 +19,6 @@ public class DataController {
      */
     @PostMapping("/addData")
     public String addData(@RequestParam String fileName) throws FileNotFoundException {
-        return readDataFile.getDataContent(fileName);
+        return insertDataFromFIle.getDataContent(fileName);
     }
-
 }

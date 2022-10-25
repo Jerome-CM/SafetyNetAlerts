@@ -14,7 +14,7 @@ public interface FirestationService {
 
 	public String deleteFirestation(FirestationDTO firestationDTO);
 
-
+	public void truncateFirestation();
 
 
 }

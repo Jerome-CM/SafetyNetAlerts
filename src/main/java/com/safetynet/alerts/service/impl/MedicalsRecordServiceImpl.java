@@ -244,6 +244,31 @@ public class MedicalsRecordServiceImpl implements MedicalsRecordService {
 
     }
 
+    @Override
+    public void truncateMedicament(){
+        medicalsRecordRepository.truncateMedicament();
+    }
+
+    @Override
+    public void truncateAllergie(){
+        medicalsRecordRepository.truncateAllergie();
+    }
+
+    @Override
+    public void truncateMedicalsRecord(){
+        medicalsRecordRepository.truncateMedicalsRecord();
+    }
+
+    @Override
+    public void truncateMedicalsRecordHasMedicament(){
+        medicalsRecordRepository.truncateMedicalsRecordHasMedicament();
+    }
+
+    @Override
+    public void truncateMedicalsRecordHasAllergie(){
+        medicalsRecordRepository.truncateMedicalsRecordHasAllergie();
+    }
+
 }
 
 

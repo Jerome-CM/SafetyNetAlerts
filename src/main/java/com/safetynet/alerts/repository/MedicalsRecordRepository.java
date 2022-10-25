@@ -3,9 +3,11 @@ package com.safetynet.alerts.repository;
 import com.safetynet.alerts.model.Allergie;
 import com.safetynet.alerts.model.MedicalsRecord;
 import com.safetynet.alerts.model.Person;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,5 +28,29 @@ public interface MedicalsRecordRepository extends CrudRepository <MedicalsRecord
             "WHERE tb_medicals_records_allergies.medicals_record_id = ?1", nativeQuery = true)
     public List<String> findAllergiesListByMedicalsRecordsId(long id);
 
+    @Modifying
+    @Transactional
+    @Query(value = "TRUNCATE table tb_medicals_records", nativeQuery = true)
+    public void truncateMedicalsRecord();
+
+    @Modifying
+    @Transactional
+    @Query(value = "TRUNCATE table tb_allergies", nativeQuery = true)
+    public void truncateAllergie();
+
+    @Modifying
+    @Transactional
+    @Query(value = "TRUNCATE table tb_medicaments", nativeQuery = true)
+    public void truncateMedicament();
+
+    @Modifying
+    @Transactional
+    @Query(value = "TRUNCATE table tb_medicals_records_allergies", nativeQuery = true)
+    public void truncateMedicalsRecordHasAllergie();
+
+    @Modifying
+    @Transactional
+    @Query(value = "TRUNCATE table tb_medicals_records_medicaments", nativeQuery = true)
+    public void truncateMedicalsRecordHasMedicament();
 }
 

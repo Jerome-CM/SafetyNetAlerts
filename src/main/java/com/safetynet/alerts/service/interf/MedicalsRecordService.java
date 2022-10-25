@@ -11,6 +11,14 @@ public interface MedicalsRecordService {
 
     public String delete(MedicalsRecordDTO medicalsRecordDTO);
 
+    public void truncateMedicament();
 
+    public void truncateAllergie();
+
+    public void truncateMedicalsRecord();
+
+    public void truncateMedicalsRecordHasMedicament();
+
+    public void truncateMedicalsRecordHasAllergie();
 }
 

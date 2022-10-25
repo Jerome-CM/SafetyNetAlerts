@@ -118,5 +118,10 @@ public class FirestationServiceImpl implements FirestationService {
             return "Delete error";
         }
     }
+
+    @Override
+    public void truncateFirestation(){
+        firestationRepository.truncateFirestation();
+    }
 }
 

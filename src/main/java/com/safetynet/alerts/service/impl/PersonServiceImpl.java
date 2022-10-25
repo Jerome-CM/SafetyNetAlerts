@@ -91,4 +91,9 @@ public class PersonServiceImpl implements PersonService {
         }
     }
 
+    @Override
+    public void truncatePerson(){
+        personRepository.truncatePerson();
+    }
+
 }
