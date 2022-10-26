@@ -29,6 +29,8 @@ Verify or change this parameters :
 
 :warning: Your data on Json format in the Postman Body is required !
 
+[The notice is available here](Documentation.pdf)
+
 ### Endpoints
 
 For each endpoint, you have a POST,PUT and DELETE keywords
@@ -59,6 +61,9 @@ mvn spring-boot:run
 /addData?fileName=data.json 
 ```
 
+>  Note  
+>  Important : data.json file must be in src/main/resources
+
 ## Run Tests
 
 You can run test with Junit5 with : 
@@ -69,14 +74,14 @@ mvn test
 
 ## Get reports
 
-  #### JaCoCo
+#### JaCoCo
 ```
 mvn test
 ```
-JaCoCo report is create in : target/site/jacoco.index.html
+JaCoCo report is create in : target/site/jacoco/index.html
 
 ####  Surefire
-Get css with html report
+Get CSS with html report
 ```
 mvn site -DgenerateReports=false
 ```
@@ -87,4 +92,4 @@ mvn surefire-report:report
 Surefire report is create in : target/site/surefire-report.html
 
 >  Note  
->  This project is an exercise of OpenClassRomms Java training
+>  This project is an exercise of OpenClassRooms Java training
