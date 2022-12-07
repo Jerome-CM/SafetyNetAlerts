@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.inject.internal.Nullable;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 @Data
 @Entity
 @Table(name="tb_persons")
@@ -17,19 +20,26 @@ public class Person extends Model{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id = 0;
 	@Length(max = 30, message = "{validation.name.size.too_long}")
+	@NotNull
 	private String lastName;
 	@Length(max = 30, message = "{validation.name.size.too_long}")
+	@NotNull
 	private String firstName;
 	@Length(max = 30)
-	private String address;
+	@NotNull
+	private String address = "Not set";
 	@Length(max = 30)
-	private String city;
+	@NotNull
+	private String city = "Not set";
 	@Length(max = 20)
-	private String zip;
+	@NotNull
+	private String zip = "Not set";
 	@Length(max = 30)
-	private String phone;
+	@NotNull
+	private String phone = "Not set";
 	@Length(max = 100)
-	private String email;
+	@NotNull
+	private String email = "Not set";
 	@JsonFormat(pattern="dd/MM/yyyy")
 	@Nullable
 	@Temporal(TemporalType.DATE)

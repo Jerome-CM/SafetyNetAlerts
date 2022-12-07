@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -19,8 +20,10 @@ public class Firestation extends Model{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Length(max = 30)
+	@NotNull
 	private String address;
 	@Length(max = 10)
+	@NotNull
 	private String station;
 
 }
